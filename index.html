@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RC Aircraft Builds</title>
+<meta name="description" content="Engineering build documentation for RC aircraft projects organized by manufacturer, aircraft model, version, and physical build.">
+<style>
+:root{
+  --bg:#08101c;--panel:#111a2b;--panel2:#18233a;--text:#edf4ff;--muted:#9fb1ca;
+  --line:#2b3b5c;--accent:#66d7ff;--accent2:#85ffba;--warn:#ffd166
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:linear-gradient(180deg,#07101b,#0b1322 35%,#08101c);
+  color:var(--text);line-height:1.5
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.topbar{
+  position:sticky;top:0;z-index:20;background:rgba(8,16,28,.94);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line)
+}
+.nav{
+  max-width:1280px;margin:auto;padding:12px 24px;
+  display:flex;justify-content:space-between;align-items:center;gap:18px
+}
+.brand{font-weight:850;letter-spacing:.045em}
+.navlinks{display:flex;gap:16px;flex-wrap:wrap;font-size:14px}
+.wrap{max-width:1280px;margin:auto;padding:28px 24px 64px}
+.hero,.card{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:20px;box-shadow:0 18px 55px rgba(0,0,0,.22)
+}
+.hero{
+  padding:42px;
+  background:linear-gradient(135deg,#13213a,#0e1728 55%,#15233d)
+}
+.kicker{
+  color:var(--accent);font-size:12px;font-weight:800;
+  letter-spacing:.13em;text-transform:uppercase
+}
+h1{font-size:48px;line-height:1.05;margin:8px 0 12px}
+h2{font-size:27px;margin:0}
+h3{margin:0 0 8px}
+.lead{font-size:18px;color:#cbd8ec;max-width:940px}
+.muted{color:var(--muted)}
+section{margin-top:30px}
+.section-head{
+  display:flex;align-items:end;justify-content:space-between;
+  gap:20px;margin-bottom:14px
+}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.manufacturer-card{
+  display:block;padding:24px;background:var(--panel);
+  border:1px solid var(--line);border-radius:18px;
+  transition:transform .15s,border-color .15s,background .15s
+}
+.manufacturer-card:hover{
+  transform:translateY(-3px);border-color:var(--accent);
+  background:#142037;text-decoration:none
+}
+.card{padding:22px}
+.badge{
+  display:inline-block;padding:4px 9px;border-radius:999px;
+  font-size:12px;font-weight:800;margin-bottom:12px
+}
+.active{
+  color:var(--accent2);background:rgba(133,255,186,.10);
+  border:1px solid rgba(133,255,186,.22)
+}
+.planned{
+  color:var(--warn);background:rgba(255,209,102,.10);
+  border:1px solid rgba(255,209,102,.22)
+}
+.meta-row{display:flex;gap:10px;flex-wrap:wrap;margin:17px 0}
+.meta{
+  background:rgba(255,255,255,.035);border:1px solid var(--line);
+  border-radius:12px;padding:9px 12px;font-size:13px;color:var(--muted)
+}
+.btn{
+  display:inline-block;padding:10px 14px;border-radius:11px;
+  border:1px solid var(--line);background:var(--panel2);
+  color:var(--text);font-weight:750
+}
+.hierarchy{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{
+  padding:18px;background:rgba(255,255,255,.025);
+  border:1px solid var(--line);border-radius:14px
+}
+.num{
+  display:inline-grid;place-items:center;width:30px;height:30px;
+  border-radius:50%;background:var(--accent);color:#06101a;
+  font-weight:850;margin-bottom:10px
+}
+
+/* Important fix for repository tree */
+.repo-layout{
+  background:#0a1322;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:0;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.repo-layout pre{
+  margin:0;
+  padding:22px;
+  font-family:Consolas,"Courier New",monospace;
+  font-size:14px;
+  line-height:1.55;
+  color:#d8e5f7;
+  white-space:pre;
+  min-width:max-content;
+}
+.repo-layout code{
+  font-family:inherit;
+  white-space:inherit;
+}
+.footer{
+  text-align:center;color:var(--muted);
+  font-size:12px;margin-top:42px
+}
+@media(max-width:950px){
+  .grid{grid-template-columns:1fr 1fr}
+  .hierarchy{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .grid,.hierarchy{grid-template-columns:1fr}
+  .nav{flex-direction:column;align-items:flex-start}
+  .wrap{padding:18px 12px 42px}
+  .hero{padding:28px}
+  h1{font-size:37px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="nav">
+    <div class="brand">RC AIRCRAFT BUILDS</div>
+    <div class="navlinks">
+      <a href="./">Home</a>
+      <a href="#manufacturers">Manufacturers</a>
+      <a href="#organization">Organization</a>
+      <a href="#repository-layout">Repository Layout</a>
+      <a href="https://github.com/kerryfcorcoran" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="kicker">#teamcorc · RC Aircraft Engineering Archive</div>
+  <h1>RC Aircraft Builds</h1>
+  <p class="lead">
+    A public engineering archive for RC aircraft projects from multiple manufacturers.
+    Documentation is organized by manufacturer, aircraft model or family, version,
+    and individual physical build so manufacturing records, hardware configuration,
+    flight testing, media, and engineering analysis remain traceable to the exact aircraft.
+  </p>
+</div>
+
+<section id="manufacturers">
+  <div class="section-head">
+    <h2>Manufacturers</h2>
+    <div class="muted">Select a manufacturer to view aircraft projects</div>
+  </div>
+
+  <div class="grid">
+
+    <a class="manufacturer-card" href="aircraft/flightory/">
+      <span class="badge active">ACTIVE PROJECTS</span>
+      <h2>Flightory</h2>
+      <p class="muted">
+        Current and planned Flightory aircraft projects, including Stallion,
+        Super Stingray VTOL, Talon 1400, and Stork.
+      </p>
+      <div class="meta-row">
+        <span class="meta">Stallion V1 & V2</span>
+        <span class="meta">Super Stingray VTOL</span>
+        <span class="meta">Talon 1400</span>
+        <span class="meta">Stork</span>
+      </div>
+      <span class="btn">View Flightory Aircraft →</span>
+    </a>
+
+    <a class="manufacturer-card" href="aircraft/titan-dynamics/">
+      <span class="badge planned">FUTURE / PLANNED</span>
+      <h2>Titan Dynamics</h2>
+      <p class="muted">
+        Reserved for Titan Dynamics aircraft projects. Individual models,
+        versions, and physical builds can be added as projects begin.
+      </p>
+      <span class="btn">View Manufacturer →</span>
+    </a>
+
+    <a class="manufacturer-card" href="aircraft/eclipson/">
+      <span class="badge planned">FUTURE / PLANNED</span>
+      <h2>Eclipson</h2>
+      <p class="muted">
+        Reserved for Eclipson aircraft projects with independent manufacturing,
+        configuration, and flight-test records.
+      </p>
+      <span class="btn">View Manufacturer →</span>
+    </a>
+
+  </div>
+</section>
+
+<section id="organization">
+  <div class="section-head">
+    <h2>Documentation Organization</h2>
+    <div class="muted">A consistent hierarchy for every aircraft</div>
+  </div>
+
+  <div class="card">
+    <div class="hierarchy">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Manufacturer</h3>
+        <p class="muted">Flightory, Titan Dynamics, Eclipson, or another manufacturer.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Aircraft Model</h3>
+        <p class="muted">The aircraft family or model, such as Stallion.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Version</h3>
+        <p class="muted">Design revision or generation, such as Stallion V1 or V2.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h3>Physical Build</h3>
+        <p class="muted">Build 01, Build 02, etc., each with its own technical history.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head"><h2>Per-Build Engineering Record</h2></div>
+  <div class="grid">
+    <div class="card"><h3>🖨️ Manufacturing</h3><p class="muted">3D printing, materials, slicer settings, component weights, print time, reprints, and manufacturing findings.</p></div>
+    <div class="card"><h3>🔧 Assembly & Hardware</h3><p class="muted">Components, wiring, connectors, installation, modifications, photos, and repair history.</p></div>
+    <div class="card"><h3>🛩️ Configuration</h3><p class="muted">Flight controller, firmware, ArduPilot parameters, calibration, mappings, and configuration baselines.</p></div>
+    <div class="card"><h3>📊 Flight Testing</h3><p class="muted">Ground tests, hover tests, flight-test objectives, observations, results, and embedded YouTube video.</p></div>
+    <div class="card"><h3>📈 Engineering Analysis</h3><p class="muted">BIN logs, tuning analysis, configuration comparisons, engineering assessments, and reports.</p></div>
+    <div class="card"><h3>📁 Media & Downloads</h3><p class="muted">Images, diagrams, PARAM files, reports, reference material, and links to externally hosted video.</p></div>
+  </div>
+</section>
+
+<section id="repository-layout">
+  <div class="section-head">
+    <h2>Repository Layout</h2>
+    <div class="muted">Horizontally scrollable on smaller screens</div>
+  </div>
+
+  <div class="repo-layout">
+<pre><code>/
+├── index.html
+├── README.md
+│
+└── aircraft/
+    ├── flightory/
+    │   ├── index.html
+    │   │
+    │   ├── stallion/
+    │   │   ├── index.html
+    │   │   │
+    │   │   ├── v1/
+    │   │   │   ├── index.html
+    │   │   │   └── build-01/
+    │   │   │       ├── index.html
+    │   │   │       ├── printing/
+    │   │   │       ├── components/
+    │   │   │       ├── assembly/
+    │   │   │       ├── ardupilot/
+    │   │   │       ├── flight-testing/
+    │   │   │       ├── engineering/
+    │   │   │       ├── media/
+    │   │   │       └── downloads/
+    │   │   │
+    │   │   └── v2/
+    │   │       ├── index.html
+    │   │       └── build-01/
+    │   │           ├── index.html
+    │   │           ├── printing/
+    │   │           ├── components/
+    │   │           ├── assembly/
+    │   │           ├── ardupilot/
+    │   │           ├── flight-testing/
+    │   │           ├── engineering/
+    │   │           ├── media/
+    │   │           └── downloads/
+    │   │
+    │   ├── super-stingray-vtol/
+    │   ├── talon-1400/
+    │   └── stork/
+    │
+    ├── titan-dynamics/
+    └── eclipson/</code></pre>
+  </div>
+</section>
+
+<div class="footer">
+  RC Aircraft Builds · Engineering Build Documentation
+</div>
+
+</div>
+</body>
+</html>
