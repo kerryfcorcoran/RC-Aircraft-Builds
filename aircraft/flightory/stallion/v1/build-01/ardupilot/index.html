@@ -87,7 +87,25 @@ details{background:var(--panel);border:1px solid var(--line);border-radius:16px;
 
 <div class="card">
 <h2>Servo Output Functions</h2>
-<div class="table-wrap"><table><thead><tr><th>Output</th><th>Function</th><th>MIN</th><th>MAX</th><th>TRIM</th></tr></thead><tbody><tr><td><strong>SERVO1</strong></td><td>4</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO2</strong></td><td>4</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO3</strong></td><td>79</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO4</strong></td><td>80</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO5</strong></td><td>0</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO6</strong></td><td>0</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO7</strong></td><td>33</td><td>1000</td><td>2000</td><td>1000</td></tr><tr><td><strong>SERVO8</strong></td><td>34</td><td>1000</td><td>2000</td><td>1000</td></tr><tr><td><strong>SERVO9</strong></td><td>36</td><td>1000</td><td>2000</td><td>1000</td></tr><tr><td><strong>SERVO10</strong></td><td>0</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO11</strong></td><td>75</td><td>850</td><td>2025</td><td>1500</td></tr><tr><td><strong>SERVO12</strong></td><td>76</td><td>1100</td><td>2225</td><td>1500</td></tr><tr><td><strong>SERVO13</strong></td><td>0</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO14</strong></td><td>0</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO15</strong></td><td>0</td><td>1100</td><td>1900</td><td>1500</td></tr><tr><td><strong>SERVO16</strong></td><td>0</td><td>1100</td><td>1900</td><td>1500</td></tr></tbody></table></div>
+<p class="muted">The <strong>Function</strong> column is the ArduPilot SERVOx_FUNCTION numeric value. The <strong>Component</strong> column identifies the physical device connected to that output where confirmed on V1 Build 01.</p>
+<div class="table-wrap"><table><thead><tr><th>Output</th><th>Function</th><th>Function Name</th><th>Component</th><th>MIN</th><th>MAX</th><th>TRIM</th><th>Reversed</th></tr></thead><tbody>
+<tr><td><strong>SERVO1</strong></td><td>4</td><td>Aileron</td><td>Aileron servo — physical side not yet confirmed</td><td>1100</td><td>1900</td><td>1500</td><td>Yes</td></tr>
+<tr><td><strong>SERVO2</strong></td><td>4</td><td>Aileron</td><td>Aileron servo — physical side not yet confirmed</td><td>1100</td><td>1900</td><td>1500</td><td>Yes</td></tr>
+<tr><td><strong>SERVO3</strong></td><td>79</td><td>VTailLeft</td><td>Left V-tail servo</td><td>1100</td><td>1900</td><td>1500</td><td>Yes</td></tr>
+<tr><td><strong>SERVO4</strong></td><td>80</td><td>VTailRight</td><td>Right V-tail servo</td><td>1100</td><td>1900</td><td>1500</td><td>No</td></tr>
+<tr><td><strong>SERVO5</strong></td><td>0</td><td>Disabled</td><td>Unused</td><td>1100</td><td>1900</td><td>1500</td><td>—</td></tr>
+<tr><td><strong>SERVO6</strong></td><td>0</td><td>Disabled</td><td>Unused</td><td>1100</td><td>1900</td><td>1500</td><td>—</td></tr>
+<tr><td><strong>SERVO7</strong></td><td>33</td><td>Motor1</td><td>Right Front Tilt Motor</td><td>1000</td><td>2000</td><td>1000</td><td>No</td></tr>
+<tr><td><strong>SERVO8</strong></td><td>34</td><td>Motor2</td><td>Left Front Tilt Motor</td><td>1000</td><td>2000</td><td>1000</td><td>No</td></tr>
+<tr><td><strong>SERVO9</strong></td><td>36</td><td>Motor4</td><td>Rear Fixed Lift Motor</td><td>1000</td><td>2000</td><td>1000</td><td>No</td></tr>
+<tr><td><strong>SERVO10</strong></td><td>0</td><td>Disabled</td><td>Unused</td><td>1100</td><td>1900</td><td>1500</td><td>—</td></tr>
+<tr><td><strong>SERVO11</strong></td><td>75</td><td>TiltMotorFrontLeft</td><td>Left Front Tilt Servo</td><td>850</td><td>2025</td><td>1500</td><td>No</td></tr>
+<tr><td><strong>SERVO12</strong></td><td>76</td><td>TiltMotorFrontRight</td><td>Right Front Tilt Servo</td><td>1100</td><td>2225</td><td>1500</td><td>Yes</td></tr>
+<tr><td><strong>SERVO13</strong></td><td>0</td><td>Disabled</td><td>Unused</td><td>1100</td><td>1900</td><td>1500</td><td>—</td></tr>
+<tr><td><strong>SERVO14</strong></td><td>0</td><td>Disabled</td><td>Unused</td><td>1100</td><td>1900</td><td>1500</td><td>—</td></tr>
+<tr><td><strong>SERVO15</strong></td><td>0</td><td>Disabled</td><td>Unused</td><td>1100</td><td>1900</td><td>1500</td><td>—</td></tr>
+<tr><td><strong>SERVO16</strong></td><td>0</td><td>Disabled</td><td>Unused</td><td>1100</td><td>1900</td><td>1500</td><td>—</td></tr>
+</tbody></table></div>
 </div>
 
 <div class="card">
