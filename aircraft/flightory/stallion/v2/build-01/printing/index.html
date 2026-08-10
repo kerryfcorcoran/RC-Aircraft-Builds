@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stallion VTOL V2 — Detailed Printing Report</title>
+<style>
+:root{--bg:#08101c;--panel:#111a2b;--panel2:#18233a;--text:#edf4ff;--muted:#9fb1ca;--line:#2b3b5c;--accent:#66d7ff;--accent2:#85ffba;--warn:#ffd166;--danger:#ff8383}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#07101b,#0b1322 35%,#08101c);color:var(--text);line-height:1.45}
+.wrap{max-width:1500px;margin:auto;padding:34px 24px 60px}
+.hero,.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 55px rgba(0,0,0,.22)}
+.hero{padding:34px;background:linear-gradient(135deg,#13213a,#0e1728 55%,#15233d)}
+.kicker{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+h1{font-size:42px;margin:7px 0 10px;line-height:1.08} h2{margin:0;font-size:22px} h3{margin-top:0}
+.muted,.note{color:var(--muted)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+.metric{padding:20px;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:15px}
+.value{font-size:30px;font-weight:850} .label{font-size:13px;color:var(--muted)}
+section{margin-top:26px} .section-title{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:12px}
+.card{padding:22px} .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+table{width:100%;border-collapse:collapse;font-size:13px} th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{text-align:left;color:#cbd8ec;background:rgba(255,255,255,.025);position:sticky;top:0}
+.num{text-align:right;white-space:nowrap} .table-wrap{overflow:auto;max-height:720px}
+.detail{min-width:1450px}
+.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800;white-space:nowrap}
+.ok{color:var(--accent2);background:rgba(133,255,186,.1);border:1px solid rgba(133,255,186,.22)}
+.warn{color:var(--warn);background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.22)}
+.info{color:var(--accent);background:rgba(102,215,255,.1);border:1px solid rgba(102,215,255,.22)}
+.timeline{display:grid;gap:10px} .event{border-left:3px solid var(--accent);padding:9px 0 9px 13px;background:linear-gradient(90deg,rgba(102,215,255,.055),transparent)}
+ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:36px}
+@media(max-width:900px){.metrics,.grid2{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.metrics,.grid2{grid-template-columns:1fr}h1{font-size:32px}.wrap{padding:20px 12px 40px}}
+
+.collapsible-section{
+  margin-top:26px;
+  background:transparent;
+}
+.section-toggle{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  background:var(--panel);
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px 18px;
+  cursor:pointer;
+  font:inherit;
+  text-align:left;
+}
+.section-toggle:hover{
+  background:var(--panel2);
+}
+.section-toggle .title{
+  font-size:22px;
+  font-weight:700;
+}
+.section-toggle .summary{
+  color:var(--muted);
+  font-size:13px;
+  margin-left:auto;
+  margin-right:10px;
+}
+.section-toggle .arrow{
+  display:inline-block;
+  transition:transform .2s ease;
+  font-size:18px;
+  color:var(--accent);
+}
+.section-toggle[aria-expanded="false"] .arrow{
+  transform:rotate(-90deg);
+}
+.section-content{
+  margin-top:12px;
+}
+.section-content[hidden]{
+  display:none;
+}
+
+
+.site-topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,16,28,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.site-nav{
+  max-width:1500px;margin:auto;padding:11px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.site-brand{font-weight:850;color:var(--text);white-space:nowrap}
+.site-links{display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+.site-links a{color:var(--accent);text-decoration:none}
+.site-links a:hover{text-decoration:underline}
+.breadcrumbs{
+  max-width:1500px;margin:0 auto;padding:11px 24px 0;
+  color:var(--muted);font-size:12px;
+}
+.breadcrumbs a{color:var(--accent);text-decoration:none}
+.breadcrumbs a:hover{text-decoration:underline}
+@media(max-width:760px){
+  .site-nav{align-items:flex-start;flex-direction:column}
+}
+
+</style></head>
+<body>
+
+<div class="site-topbar">
+  <div class="site-nav">
+    <div class="site-brand">STALLION VTOL V2 — BUILD 01</div>
+    <div class="site-links">
+      <a href="../../../../../../">RC Aircraft Builds</a>
+      <a href="../../../../">Flightory</a>
+      <a href="../../../">Stallion</a>
+      <a href="../../">V2</a>
+      <a href="../">Build 01</a>
+      <a href="./">3D Printing</a>
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <a href="../../../../../../">RC Aircraft Builds</a> →
+  <a href="../../../../">Flightory</a> →
+  <a href="../../../">Stallion</a> →
+  <a href="../../">V2</a> →
+  <a href="../">Build 01</a> →
+  <strong>3D Printing</strong>
+</div>
+<div class="wrap">
+
+<div class="hero">
+  <div class="kicker">#teamcorc · Stallion VTOL V2 Manufacturing</div>
+  <h1>Detailed 3D Printing Report</h1>
+  <p class="muted">Refreshed production report with executive summary, material usage, section-by-section part details, printer assignments, slicer settings, individual weights, print times, filament consumption, and reprint/process history.</p>
+  <div class="metrics">
+    <div class="metric"><div class="value">67</div><div class="label">Accepted printed components</div></div>
+    <div class="metric"><div class="value">895 g</div><div class="label">Accepted printed-part mass</div></div>
+    <div class="metric"><div class="value">415.920 m*</div><div class="label">Known filament consumed</div></div>
+    <div class="metric"><div class="value">91h 49m*</div><div class="label">Known recorded print time</div></div>
+  </div>
+</div>
+<div style="display:flex;gap:10px;justify-content:flex-end;margin:18px 0 4px">
+  <button id="expand-all" class="section-toggle" style="width:auto;padding:9px 14px;font-size:13px">Expand all</button>
+  <button id="collapse-all" class="section-toggle" style="width:auto;padding:9px 14px;font-size:13px">Collapse all</button>
+</div>
+
+
+<section class="grid2">
+<div class="card">
+<h3>Material Summary</h3>
+<table>
+<tr><th>Material Group</th><th class="num">Weight</th><th class="num">Filament</th><th class="num">Time</th></tr>
+<tr><td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> — Gray / White</td><td class="num">650 g</td><td class="num">321.225 m*</td><td class="num">65 h 54 m*</td></tr>
+<tr><td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> — White / Red</td><td class="num">244 g</td><td class="num">94.346 m</td><td class="num">25 h 48 m</td></tr>
+<tr><td>Generic PLA — Transparent</td><td class="num">1 g</td><td class="num">0.349 m</td><td class="num">7 m</td></tr>
+<tr><th>Total</th><th class="num">895 g</th><th class="num">415.920 m*</th><th class="num">91 h 49 m*</th></tr>
+</table>
+<p class="muted">The 895 g figure is printed-component mass only, not final empty weight or AUW. *Tail 1 print time and filament were not recorded, so filament/time totals are known minimums.</p>
+</div>
+<div class="card">
+<h3>Current Process Baseline</h3>
+<p><strong>Primary slicer:</strong> <a href="https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v2.4.2" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">OrcaSlicer v2.4.2 ↗</a></p>
+<div class="timeline">
+<div class="event"><strong>LW-PLA aerodynamic parts:</strong> primarily OrcaSlicer with 1 wall and low-density Gyroid or Lateral Lattice infill.</div>
+<div class="event"><strong>Structural PETG:</strong> generally 3 walls with 20% Grid or Cubic depending on part.</div>
+<div class="event"><strong>Thin-wall boom parts:</strong> OrcaSlicer works correctly when <b>Detect Thin Walls</b> is enabled and <b>Wall Generator = Arachne</b>.</div>
+<div class="event"><strong>Transparent LED covers:</strong> Detect Thin Walls enabled.</div>
+</div>
+</div>
+</section>
+
+
+<section class="collapsible-section">
+  <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-1">
+    <span class="title">Key Manufacturing Findings</span>
+    <span class="summary">Updated to reflect the latest validated slicer configuration</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="section-content" id="section-1">
+<div class="grid2">
+<div class="card">
+<h3><a href="https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v2.4.2" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none">OrcaSlicer v2.4.2 ↗</a> — Thin-Wall Configuration</h3>
+<p><b>BOOM TAIL INSERT, BOOM FUS INSERT, and BOOM FUS MOUNT</b> do not require Cura. They can be sliced successfully in OrcaSlicer with:</p>
+<ul><li><b>Detect Thin Walls:</b> Enabled</li><li><b>Wall Generator:</b> Arachne</li></ul>
+<p class="muted">This supersedes the earlier interim note that Cura was required.</p>
+</div>
+<div class="card">
+<h3>Replacement / Reprint Notes</h3>
+<ul>
+<li><b>Custom rear motor mount:</b> original split; replacement uses separate Top-Rear-Motor-Mount and Bottom-Rear-Motor-Mount parts.</li>
+<li><b>TAIL 1:</b> accepted as final part (18 g); print time and filament were not recorded.</li>
+<li><b>Wing Lock Assembly:</b> Neptune 2S Base + Front L/R + Rear L/R assembly accepted as final.</li>
+</ul>
+</div>
+</div>
+
+  </div>
+  </div>
+</section>
+
+
+    
+<section class="collapsible-section">
+  <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-2">
+    <span class="title">Wings</span>
+    <span class="summary">10 accepted line items · 219.0 g recorded · 110.919 m recorded · 22h 16m recorded</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="section-content" id="section-2">
+<div class="card table-wrap">
+      <table class="detail">
+        <thead><tr>
+          <th>Part</th><th>Printer</th><th>Material</th><th>Slicer</th><th>Key Settings</th>
+          <th class="num">Weight</th><th class="num">Time</th><th class="num">Filament</th><th>Status</th><th>Notes</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><strong>WING 3 R</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Lateral Lattice; 45°</td>
+          <td class="num">23 g</td>
+          <td class="num">2h 15m</td>
+          <td class="num">11.300 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Minimal post cleanup</td>
+        </tr>
+        <tr>
+          <td><strong>WING 3 L</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Lateral Lattice; 45°</td>
+          <td class="num">23 g</td>
+          <td class="num">2h 15m</td>
+          <td class="num">11.300 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>WING 1R VTOL</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Lateral Lattice; 45°</td>
+          <td class="num">45 g</td>
+          <td class="num">4h 29m</td>
+          <td class="num">22.400 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>WING 1L VTOL</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Lateral Lattice; 45°; supports</td>
+          <td class="num">45 g</td>
+          <td class="num">4h 38m</td>
+          <td class="num">23.050 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Support test came out very clean</td>
+        </tr>
+        <tr>
+          <td><strong>WING 2L VTOL</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Lateral Lattice; 45°; tree support auto</td>
+          <td class="num">26 g</td>
+          <td class="num">2h 50m</td>
+          <td class="num">14.000 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>WING 2R VTOL</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Lateral Lattice; 45°; tree support auto</td>
+          <td class="num">27 g</td>
+          <td class="num">2h 51m</td>
+          <td class="num">14.040 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>WINGTIP R LED</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Lateral Lattice; 45°</td>
+          <td class="num">15 g</td>
+          <td class="num">1h 25m</td>
+          <td class="num">7.240 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>WINGTIP L LED</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Lateral Lattice; 45°</td>
+          <td class="num">14 g</td>
+          <td class="num">1h 26m</td>
+          <td class="num">7.240 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>WING LED COVER L</strong></td>
+          <td>K1 Max White</td>
+          <td>Generic PLA Transparent</td>
+          <td>OrcaSlicer</td>
+          <td>Detect Thin Walls</td>
+          <td class="num">0.5 g</td>
+          <td class="num">3.5 min</td>
+          <td class="num">0.174 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Printed as shared L/R job; job total 7 min / 0.349 m</td>
+        </tr>
+        <tr>
+          <td><strong>WING LED COVER R</strong></td>
+          <td>K1 Max White</td>
+          <td>Generic PLA Transparent</td>
+          <td>OrcaSlicer</td>
+          <td>Detect Thin Walls</td>
+          <td class="num">0.5 g</td>
+          <td class="num">3.5 min</td>
+          <td class="num">0.174 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Printed as shared L/R job; job total 7 min / 0.349 m</td>
+        </tr></tbody>
+      </table>
+      </div>
+    
+  </div>
+  </div>
+</section>
+    
+<section class="collapsible-section">
+  <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-3">
+    <span class="title">Fuselage</span>
+    <span class="summary">11 accepted line items · 306.0 g recorded · 153.116 m recorded · 29h 27m recorded</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="section-content" id="section-3">
+<div class="card table-wrap">
+      <table class="detail">
+        <thead><tr>
+          <th>Part</th><th>Printer</th><th>Material</th><th>Slicer</th><th>Key Settings</th>
+          <th class="num">Weight</th><th class="num">Time</th><th class="num">Filament</th><th>Status</th><th>Notes</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><strong>FUS 1</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 0°</td>
+          <td class="num">33 g</td>
+          <td class="num">3h 09m</td>
+          <td class="num">16.410 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>FUS 2</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°; support enabled</td>
+          <td class="num">51 g</td>
+          <td class="num">4h 45m</td>
+          <td class="num">25.440 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>FUS 3</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">51 g</td>
+          <td class="num">4h 54m</td>
+          <td class="num">25.660 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>FUS 4</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">70 g</td>
+          <td class="num">7h 02m</td>
+          <td class="num">37.726 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>FUS 5</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">39 g</td>
+          <td class="num">3h 36m</td>
+          <td class="num">18.720 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>HATCH FRONT 1</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">7 g</td>
+          <td class="num">48m</td>
+          <td class="num">3.320 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>HATCH FRONT 2</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">8 g</td>
+          <td class="num">49m</td>
+          <td class="num">3.670 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>HATCH REAR 1</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">7 g</td>
+          <td class="num">43m</td>
+          <td class="num">3.270 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Printer assignment corrected from White to Orange</td>
+        </tr>
+        <tr>
+          <td><strong>HATCH REAR 2</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">6 g</td>
+          <td class="num">42m</td>
+          <td class="num">2.810 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>NOSE</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>2 walls; 3% Gyroid; 45°</td>
+          <td class="num">29 g</td>
+          <td class="num">2h 24m</td>
+          <td class="num">13.610 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Weight supplied later</td>
+        </tr>
+        <tr>
+          <td><strong>NOSE TOP</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>2 walls; 3% Gyroid; 45°</td>
+          <td class="num">5 g</td>
+          <td class="num">35m</td>
+          <td class="num">2.480 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr></tbody>
+      </table>
+      </div>
+    
+  </div>
+  </div>
+</section>
+    
+<section class="collapsible-section">
+  <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-4">
+    <span class="title">Tail &amp; Control Surfaces</span>
+    <span class="summary">16 accepted line items · 108.0 g recorded · 57.539 m recorded · 14h 02m recorded</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="section-content" id="section-4">
+<div class="card table-wrap">
+      <table class="detail">
+        <thead><tr>
+          <th>Part</th><th>Printer</th><th>Material</th><th>Slicer</th><th>Key Settings</th>
+          <th class="num">Weight</th><th class="num">Time</th><th class="num">Filament</th><th>Status</th><th>Notes</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><strong>V TAIL 1 L</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°; support</td>
+          <td class="num">14 g</td>
+          <td class="num">1h 32m</td>
+          <td class="num">7.220 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>V TAIL 1 R</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°; support</td>
+          <td class="num">12 g</td>
+          <td class="num">1h 32m</td>
+          <td class="num">7.210 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>V TAIL 2 L</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°; support</td>
+          <td class="num">9 g</td>
+          <td class="num">1h 07m</td>
+          <td class="num">4.700 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>V TAIL 2 R</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°; support</td>
+          <td class="num">8 g</td>
+          <td class="num">1h 07m</td>
+          <td class="num">4.710 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>V TAIL TIP L</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°</td>
+          <td class="num">0.5 g</td>
+          <td class="num">13m</td>
+          <td class="num">0.877 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>V TAIL TIP R</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°</td>
+          <td class="num">0.5 g</td>
+          <td class="num">13m</td>
+          <td class="num">0.852 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>RUDDER 1L</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°</td>
+          <td class="num">6 g</td>
+          <td class="num">52m</td>
+          <td class="num">2.570 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>RUDDER 1R</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°</td>
+          <td class="num">6 g</td>
+          <td class="num">52m</td>
+          <td class="num">2.570 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>RUDDER 2L</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°</td>
+          <td class="num">3 g</td>
+          <td class="num">38m</td>
+          <td class="num">1.660 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>RUDDER 2R</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>4% Gyroid; 45°</td>
+          <td class="num">3 g</td>
+          <td class="num">38m</td>
+          <td class="num">1.660 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>TAIL 1</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>2 walls; 3% Gyroid</td>
+          <td class="num">18 g</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Accepted final part; print time and filament were not recorded</td>
+        </tr>
+        <tr>
+          <td><strong>TAIL 2</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>2 walls; 3% Gyroid; painted tree support</td>
+          <td class="num">18 g</td>
+          <td class="num">1h 38m</td>
+          <td class="num">8.870 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>TAIL 3</strong></td>
+          <td>Not recorded</td>
+          <td>Not recorded</td>
+          <td>Not recorded</td>
+          <td></td>
+          <td class="num">2 g</td>
+          <td class="num">14m</td>
+          <td class="num">1.190 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>AILERON 1L</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">7 g</td>
+          <td class="num">50m</td>
+          <td class="num">3.300 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>AILERON 1R</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">6 g</td>
+          <td class="num">51m</td>
+          <td class="num">3.300 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>AILERON 2L</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">7 g</td>
+          <td class="num">52m</td>
+          <td class="num">3.410 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>AILERON 2R</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://us.polymaker.com/products/polylite-lw-pla" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Polymaker PolyLite LW-PLA ↗</a> Gray</td>
+          <td>OrcaSlicer</td>
+          <td>1 wall; 3% Gyroid; 45°</td>
+          <td class="num">6 g</td>
+          <td class="num">53m</td>
+          <td class="num">3.440 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr></tbody>
+      </table>
+      </div>
+    
+  </div>
+  </div>
+</section>
+    
+<section class="collapsible-section">
+  <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-5">
+    <span class="title">Structural PETG</span>
+    <span class="summary">17 accepted line items · 225.0 g recorded · 88.136 m recorded · 24h 43m recorded</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="section-content" id="section-5">
+<div class="card table-wrap">
+      <table class="detail">
+        <thead><tr>
+          <th>Part</th><th>Printer</th><th>Material</th><th>Slicer</th><th>Key Settings</th>
+          <th class="num">Weight</th><th class="num">Time</th><th class="num">Filament</th><th>Status</th><th>Notes</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><strong>BOOM L</strong></td>
+          <td>Elegoo Neptune 2S</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer / OctoPrint workflow</td>
+          <td>3 walls; 4 top/bottom; 20% Cubic; 45°</td>
+          <td class="num">45 g</td>
+          <td class="num">5h 16m</td>
+          <td class="num">18.520 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>BOOM R</strong></td>
+          <td>Elegoo Neptune 2S</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer / OctoPrint workflow</td>
+          <td>3 walls; 4 top/bottom; 20% Cubic; 45°</td>
+          <td class="num">44 g</td>
+          <td class="num">5h 16m</td>
+          <td class="num">18.520 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>FUS ROOT L</strong></td>
+          <td>Elegoo Neptune 2S</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer / OctoPrint workflow</td>
+          <td>3 walls; 20% Grid; support</td>
+          <td class="num">9 g</td>
+          <td class="num">1h 07m</td>
+          <td class="num">3.320 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>FUS ROOT R</strong></td>
+          <td>Elegoo Neptune 2S</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer / OctoPrint workflow</td>
+          <td>3 walls; 20% Grid; support</td>
+          <td class="num">9 g</td>
+          <td class="num">1h 07m</td>
+          <td class="num">3.320 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>WING ROOT L</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid; 45°</td>
+          <td class="num">10 g</td>
+          <td class="num">41m</td>
+          <td class="num">3.790 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>WING ROOT R</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid; 45°</td>
+          <td class="num">11 g</td>
+          <td class="num">38m</td>
+          <td class="num">4.140 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Weight corrected from initial 1 g entry</td>
+        </tr>
+        <tr>
+          <td><strong>FRONT REINFORCEMENT</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid</td>
+          <td class="num">3 g</td>
+          <td class="num">8m</td>
+          <td class="num">0.966 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>MOTOR MOUNT TAIL</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid</td>
+          <td class="num">12 g</td>
+          <td class="num">42m</td>
+          <td class="num">4.380 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>MOTOR MOUNT FRONT ×2</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid</td>
+          <td class="num">12 g</td>
+          <td class="num">51m</td>
+          <td class="num">4.580 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>12 g is combined pair weight</td>
+        </tr>
+        <tr>
+          <td><strong>SERVO COVER L + R</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid</td>
+          <td class="num">7 g</td>
+          <td class="num">41m</td>
+          <td class="num">5.390 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Combined job / combined weight</td>
+        </tr>
+        <tr>
+          <td><strong>BATTERY PAD</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid</td>
+          <td class="num">9 g</td>
+          <td class="num">24m</td>
+          <td class="num">3.240 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>BOOM TAIL INSERT</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid; Detect Thin Walls; Arachne</td>
+          <td class="num">12 g</td>
+          <td class="num">2h 46m</td>
+          <td class="num">3.990 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Initially problematic; OrcaSlicer works with Detect Thin Walls + Arachne</td>
+        </tr>
+        <tr>
+          <td><strong>BOOM FUS INSERT</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid; Detect Thin Walls; Arachne</td>
+          <td class="num">10 g</td>
+          <td class="num">1h 54m</td>
+          <td class="num">3.400 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>OrcaSlicer works with Detect Thin Walls + Arachne</td>
+        </tr>
+        <tr>
+          <td><strong>BOOM FUS MOUNT</strong></td>
+          <td>K1 Max White</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid; Detect Thin Walls; Arachne</td>
+          <td class="num">15 g</td>
+          <td class="num">1h 56m</td>
+          <td class="num">5.150 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>OrcaSlicer works with Detect Thin Walls + Arachne</td>
+        </tr>
+        <tr>
+          <td><strong>BOOM KNOB</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid</td>
+          <td class="num">5 g</td>
+          <td class="num">35m</td>
+          <td class="num">1.600 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Top-Rear-Motor-Mount</strong></td>
+          <td>Not recorded</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>Not recorded</td>
+          <td>20% Grid</td>
+          <td class="num">6 g</td>
+          <td class="num">22m</td>
+          <td class="num">1.930 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Custom replacement after original rear motor mount split</td>
+        </tr>
+        <tr>
+          <td><strong>Bottom-Rear-Motor-Mount</strong></td>
+          <td>Not recorded</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> White</td>
+          <td>Not recorded</td>
+          <td>20% Grid</td>
+          <td class="num">6 g</td>
+          <td class="num">19m</td>
+          <td class="num">1.900 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Custom replacement after original rear motor mount split</td>
+        </tr></tbody>
+      </table>
+      </div>
+    
+  </div>
+  </div>
+</section>
+    
+<section class="collapsible-section">
+  <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-6">
+    <span class="title">Wing Lock Hardware</span>
+    <span class="summary">4 accepted line items · 19.0 g recorded · 6.210 m recorded · 1h 35m recorded</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="section-content" id="section-6">
+<div class="card table-wrap">
+      <table class="detail">
+        <thead><tr>
+          <th>Part</th><th>Printer</th><th>Material</th><th>Slicer</th><th>Key Settings</th>
+          <th class="num">Weight</th><th class="num">Time</th><th class="num">Filament</th><th>Status</th><th>Notes</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><strong>Wing Lock Assembly (Base + Front L/R + Rear L/R)</strong></td>
+          <td>Elegoo Neptune 2S</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> Red</td>
+          <td>OrcaSlicer / OctoPrint workflow</td>
+          <td>3 walls; 20% Grid; 45°</td>
+          <td class="num">10 g</td>
+          <td class="num">1h 07m</td>
+          <td class="num">3.310 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Accepted final assembly</td>
+        </tr>
+        <tr>
+          <td><strong>LOCK 1</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> Red</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Part of shared 4-part job</td>
+        </tr>
+        <tr>
+          <td><strong>LOCK 2</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> Red</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>Part of shared 4-part job</td>
+        </tr>
+        <tr>
+          <td><strong>LOCK SPRING ×2</strong></td>
+          <td>K1 Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> Red</td>
+          <td>OrcaSlicer</td>
+          <td>3 walls; 20% Grid</td>
+          <td class="num">9 g</td>
+          <td class="num">28m</td>
+          <td class="num">2.900 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td>9 g / 28 min / 2.90 m are totals for LOCK 1 + LOCK 2 + two springs</td>
+        </tr></tbody>
+      </table>
+      </div>
+    
+  </div>
+  </div>
+</section>
+
+
+<section class="collapsible-section">
+  <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-7">
+    <span class="title">Open / Non-Final Items</span>
+    <span class="summary"></span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="section-content" id="section-7">
+    
+<div class="card">
+<table>
+<tr><th>Item</th><th>Status</th><th>Disposition</th></tr>
+<tr><td>TAIL 1</td><td><span class="badge ok">Accepted</span></td><td>18 g. Final part accepted; print time and filament were not recorded.</td></tr>
+<tr><td>Wing Lock Assembly (Neptune 2S)</td><td><span class="badge ok">Accepted</span></td><td>Base + Front L/R + Rear L/R accepted as final assembly. 10 g, 1h 07m, 3.31 m.</td></tr>
+</table>
+</div>
+
+  </div>
+</section>
+
+
+<section class="collapsible-section">
+  <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-8">
+    <span class="title">Manufacturing Baseline</span>
+    <span class="summary"></span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="section-content" id="section-8">
+    
+<div class="card">
+<h2>Manufacturing Baseline</h2>
+<p style="font-size:20px"><strong>67 accepted components · 895 g · 415.920 m known filament · 91 h 49 m known printing</strong></p>
+<p class="muted">Equivalent known cumulative printer time: 3 days 19 hours 49 minutes. Tail 1 print time and filament remain unrecorded.</p>
+</div>
+
+  </div>
+</section>
+
+<div class="footer">Stallion VTOL V2 — Detailed 3D Printing Manufacturing Report · Slicing baseline: <a href="https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v2.4.2" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">OrcaSlicer v2.4.2</a></div>
+</div>
+<script>
+(function(){
+  function setExpanded(btn, expanded){
+    const id = btn.getAttribute('aria-controls');
+    const content = id ? document.getElementById(id) : null;
+    btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    if (content) {
+      if (expanded) content.removeAttribute('hidden');
+      else content.setAttribute('hidden','');
+    }
+  }
+
+  document.querySelectorAll('.section-toggle[aria-controls]').forEach(btn => {
+    btn.addEventListener('click', function(){
+      setExpanded(btn, btn.getAttribute('aria-expanded') !== 'true');
+    });
+  });
+
+  document.getElementById('expand-all')?.addEventListener('click', () => {
+    document.querySelectorAll('.section-toggle[aria-controls]').forEach(btn => setExpanded(btn, true));
+  });
+
+  document.getElementById('collapse-all')?.addEventListener('click', () => {
+    document.querySelectorAll('.section-toggle[aria-controls]').forEach(btn => setExpanded(btn, false));
+  });
+})();
+</script>
+
+</body></html>
