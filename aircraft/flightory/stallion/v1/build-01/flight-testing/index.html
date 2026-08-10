@@ -27,6 +27,25 @@ h1{font-size:43px;margin:8px 0 10px}h2{margin:0 0 8px}.muted{color:var(--muted)}
 .card{padding:22px;margin-top:24px}
 .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:36px}
 @media(max-width:800px){.test-body{grid-template-columns:1fr}.nav{flex-direction:column;align-items:flex-start}.wrap{padding:18px 12px 42px}h1{font-size:34px}}
+
+.stallion-hero-image{
+  width:100%;
+  height:clamp(220px,34vw,430px);
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  border-radius:16px;
+  border:1px solid var(--line);
+  margin-top:18px;
+  box-shadow:0 12px 35px rgba(0,0,0,.28);
+}
+.stallion-image-credit{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+  text-align:right;
+}
+
 </style></head>
 <body>
 <div class="topbar"><div class="nav"><strong>RC AIRCRAFT BUILDS</strong><div class="links">
@@ -44,7 +63,10 @@ h1{font-size:43px;margin:8px 0 10px}h2{margin:0 0 8px}.muted{color:var(--muted)}
 </div>
 
 <div class="hero">
-<div class="kicker">Flight Test Record</div>
+<div class="kicker">Flight Test Record
+<img class="stallion-hero-image" src="../../../assets/stallion-vtol.jpg" alt="Flightory Stallion VTOL aircraft">
+<div class="stallion-image-credit">Image: Flightory</div>
+</div>
 <h1>Stallion VTOL V1 — Build 01 Hover Testing</h1>
 <p class="muted">Chronological hover-test video log documenting the progression from early PID and tilt-motor adjustments toward increasingly stable hover control.</p>
 </div>

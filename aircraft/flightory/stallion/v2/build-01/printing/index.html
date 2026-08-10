@@ -105,6 +105,25 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
   .site-nav{align-items:flex-start;flex-direction:column}
 }
 
+
+.stallion-hero-image{
+  width:100%;
+  height:clamp(220px,34vw,430px);
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  border-radius:16px;
+  border:1px solid var(--line);
+  margin-top:18px;
+  box-shadow:0 12px 35px rgba(0,0,0,.28);
+}
+.stallion-image-credit{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+  text-align:right;
+}
+
 </style></head>
 <body>
 
@@ -132,7 +151,10 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
 <div class="wrap">
 
 <div class="hero">
-  <div class="kicker">#teamcorc · Stallion VTOL V2 Manufacturing</div>
+  <div class="kicker">#teamcorc · Stallion VTOL V2 Manufacturing
+<img class="stallion-hero-image" src="../../../assets/stallion-vtol.jpg" alt="Flightory Stallion VTOL aircraft">
+<div class="stallion-image-credit">Image: Flightory</div>
+</div>
   <h1>Detailed 3D Printing Report</h1>
   <p class="muted">Refreshed production report with executive summary, material usage, section-by-section part details, printer assignments, slicer settings, individual weights, print times, filament consumption, and reprint/process history.</p>
   <div class="metrics">
