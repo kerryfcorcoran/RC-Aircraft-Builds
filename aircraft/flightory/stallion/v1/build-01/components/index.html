@@ -37,13 +37,28 @@ table{width:100%;border-collapse:collapse;min-width:1150px;font-size:13px}th,td{
 <img class="stallion-hero-image" src="../../../assets/stallion-vtol.jpg" alt="Flightory Stallion VTOL aircraft">
 <div class="image-credit">Image: Flightory</div>
 <div class="summary">
-<div class="metric"><strong>15</strong><span>Documented component entries</span></div>
+<div class="metric"><strong>17</strong><span>Documented component entries</span></div>
 <div class="metric"><strong>3</strong><span>VTOL motors</span></div>
 <div class="metric"><strong>3</strong><span>VTOL ESCs</span></div>
 <div class="metric"><strong>1</strong><span>Primary flight controller</span></div>
 </div>
 </div>
 
+
+
+<div class="section">
+<div class="section-title"><h2>Aircraft Mass & Configuration</h2><div class="muted">Ready-to-fly physical build properties</div></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>Ready-to-Fly AUW</strong></td>
+<td><strong>Not yet recorded</strong></td>
+<td>Record measured all-up weight in normal ready-to-fly configuration, including flight battery and installed equipment.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 
 <div class="section">
 <div class="section-title"><h2>Flight Control & Navigation</h2><div class="muted">2 documented component entries</div></div>
@@ -144,7 +159,7 @@ table{width:100%;border-collapse:collapse;min-width:1150px;font-size:13px}th,td{
 <tr>
 <td><strong>Long-Range RF Module</strong></td>
 <td><a href="https://www.team-blacksheep.com/" target="_blank" rel="noopener noreferrer">TBS ↗</a></td>
-<td>Crossfire TX Full 915 MHz</td>
+<td>TBS Crossfire Module</td>
 <td class="qty">1</td>
 <td>RC uplink transmitter module</td>
 <td>RadioMaster TX16S</td>
@@ -178,28 +193,58 @@ table{width:100%;border-collapse:collapse;min-width:1150px;font-size:13px}th,td{
 <div class="table-wrap"><table>
 <thead><tr><th>Component</th><th>Manufacturer</th><th>Model</th><th>Qty</th><th>Function</th><th>Location</th><th>Status</th><th>Installation / Build Notes</th></tr></thead>
 <tbody>
-<tr>
-<td><strong>Digital Video Unit</strong></td>
-<td><a href="https://caddxfpv.com/" target="_blank" rel="noopener noreferrer">Caddx ↗</a></td>
-<td>Vista</td>
-<td class="qty">1</td>
-<td>FPV video and digital OSD transport</td>
-<td>Aircraft</td>
-<td><span class="badge active">Installed / Active</span></td>
-<td>Used with DJI Goggles V2; MSP OSD configured on SERIAL6.</td>
-</tr>
+
+</tbody>
+</table></div>
+</div>
+<div class="section">
+<div class="section-title"><h2>FPV / Video</h2><div class="muted">4 documented component entries</div></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Component</th><th>Manufacturer</th><th>Model</th><th>Qty</th><th>Function</th><th>Location</th><th>Status</th><th>Installation / Build Notes</th></tr></thead>
+<tbody>
 <tr>
 <td><strong>FPV Goggles</strong></td>
-<td><a href="https://www.dji.com/" target="_blank" rel="noopener noreferrer">DJI ↗</a></td>
-<td>Goggles V2</td>
+<td><a href="https://www.fatshark.com/" target="_blank" rel="noopener noreferrer">Fat Shark ↗</a></td>
+<td>HD3 Goggles</td>
 <td class="qty">1</td>
 <td>Pilot FPV display</td>
 <td>Ground equipment</td>
 <td><span class="badge active">Operational</span></td>
-<td>Used with Caddx Vista.</td>
-</tr></tbody>
-</table></div>
+<td>Primary analog FPV goggles for Stallion V1 Build 01.</td>
+</tr>
+<tr>
+<td><strong>FPV Receiver Module</strong></td>
+<td>Furious FPV</td>
+<td>True-D VRX</td>
+<td class="qty">1</td>
+<td>Analog diversity video receiver</td>
+<td>Installed in Fat Shark HD3 goggles</td>
+<td><span class="badge active">Operational</span></td>
+<td>Used as the FPV receive module in the HD3 goggles.</td>
+</tr>
+<tr>
+<td><strong>Video Transmitter</strong></td>
+<td><a href="https://www.immersionrc.com/" target="_blank" rel="noopener noreferrer">ImmersionRC ↗</a></td>
+<td>2.4 GHz VTX</td>
+<td class="qty">1</td>
+<td>Analog FPV video transmission</td>
+<td>Aircraft</td>
+<td><span class="badge active">Installed / Active</span></td>
+<td>2.4 GHz analog video transmitter.</td>
+</tr>
+<tr>
+<td><strong>FPV Camera</strong></td>
+<td>Caddx</td>
+<td>Turtle V2</td>
+<td class="qty">1</td>
+<td>FPV camera / onboard video source</td>
+<td>Aircraft</td>
+<td><span class="badge active">Installed / Active</span></td>
+<td>Primary aircraft FPV camera for this build.</td>
+</tr>
+</tbody></table></div>
 </div>
+
 <div class="section">
 <div class="section-title"><h2>Power</h2><div class="muted">2 documented component entries</div></div>
 <div class="table-wrap"><table>
@@ -232,16 +277,7 @@ table{width:100%;border-collapse:collapse;min-width:1150px;font-size:13px}th,td{
 <div class="table-wrap"><table>
 <thead><tr><th>Component</th><th>Manufacturer</th><th>Model</th><th>Qty</th><th>Function</th><th>Location</th><th>Status</th><th>Installation / Build Notes</th></tr></thead>
 <tbody>
-<tr>
-<td><strong>Antenna Tracker</strong></td>
-<td>Custom / ATT</td>
-<td>MAVLink antenna tracker</td>
-<td class="qty">1</td>
-<td>Directional telemetry antenna tracking</td>
-<td>Ground station</td>
-<td><span class="badge active">Operational</span></td>
-<td>Configured for 57600 baud MAVLink; Set Home by long press.</td>
-</tr></tbody>
+</tbody>
 </table></div>
 </div>
 
