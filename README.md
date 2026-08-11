@@ -1,297 +1,395 @@
 # RC Aircraft Builds
 
-Engineering build documentation for my RC aircraft projects.
+A public engineering archive for the design, construction, configuration, manufacturing, testing, and continued development of #teamcorc RC aircraft projects.
 
-This repository is intended to serve as a long-term technical archive for aircraft from multiple manufacturers, with each project organized by:
+GitHub Pages:
 
-**Manufacturer → Aircraft Model / Family → Version → Build**
+https://teamcorc.github.io/RC-Aircraft-Builds/
 
-Each physical aircraft build can maintain its own manufacturing records, hardware configuration, assembly notes, ArduPilot configuration, flight-test history, engineering analysis, media, and downloadable resources.
-
----
-
-## Project Website
-
-The repository is published as a static website using GitHub Pages.
-
-The root page acts as the main aircraft-project hub, with navigation into each manufacturer and aircraft family.
+This repository is intentionally organized as an engineering record rather than a conventional build blog. The goal is to preserve enough information to understand how each aircraft was actually constructed and configured at a particular point in its development.
 
 ---
 
 ## Repository Organization
 
-The intended structure is:
+Aircraft documentation follows this hierarchy:
 
 ```text
-/
-├── index.html
-├── README.md
-│
-└── aircraft/
-    ├── flightory/
-    │   ├── stallion/
-    │   │   ├── v1/
-    │   │   │   └── build-01/
-    │   │   └── v2/
-    │   │       └── build-01/
-    │   │
-    │   ├── super-stingray-vtol/
-    │   ├── talon-1400/
-    │   └── stork/
-    │
-    └── <future-manufacturer>/
-        └── <aircraft-model>/
-            └── <version>/
-                └── <build>/
+Manufacturer
+└── Aircraft Model / Family
+    └── Version
+        └── Physical Build
 ```
 
-This structure allows multiple aircraft from the same manufacturer, multiple versions of the same model, and multiple physical builds of each version without mixing configuration or test data.
+This keeps different manufacturers, aircraft families, design revisions, and physical aircraft isolated from one another.
+
+Current manufacturer areas include:
+
+- Flightory
+- Eclipson
+- Titan Dynamics
+- Additional manufacturers may be added as projects begin.
+
+Example:
+
+```text
+aircraft/
+├── flightory/
+│   ├── stallion/
+│   │   ├── references/
+│   │   ├── v1/
+│   │   │   └── build-01/
+│   │   └── v2/
+│   │       └── build-01/
+│   ├── super-stingray-vtol/
+│   ├── talon-1400/
+│   └── stork/
+├── eclipson/
+└── titan-dynamics/
+```
 
 ---
 
-## Current Aircraft Projects
+## Build-Level Engineering Records
 
-### Flightory
-
-#### Stallion
-
-- **Stallion VTOL V1**
-  - Build 01 — existing completed aircraft
-- **Stallion VTOL V2**
-  - Build 01 — active build
-
-#### Planned Flightory Aircraft
-
-- Super Stingray VTOL
-- Talon 1400
-- Stork
-
-Additional manufacturers and aircraft will be added as future projects begin.
-
----
-
-## Per-Build Documentation
-
-Each physical aircraft build can contain its own documentation areas:
+A physical build can contain some or all of the following:
 
 ```text
 build-01/
-├── index.html
-├── printing/
 ├── components/
-├── assembly/
+├── assembly-wiring/
 ├── ardupilot/
 ├── flight-testing/
 ├── engineering/
 ├── media/
-└── downloads/
+├── downloads/
+└── printing/
 ```
 
-### 3D Printing / Manufacturing
+Not every aircraft or build will contain every section. Documentation reflects information actually captured for that physical aircraft.
 
-May include:
+Typical records include:
 
-- Individual printed components
-- Printer used
-- Filament / material
-- Slicer and slicer version
-- Wall count
-- Infill type and percentage
-- Orientation
-- Support settings
-- Part weight
+- Exact installed hardware
+- Component sources and manufacturer documentation
+- Firmware
+- ArduPilot PARAM files and configuration baselines
+- Serial/UART mapping
+- Servo and motor output assignments
+- Wiring and power topology
+- Assembly procedures and modifications
+- 3D-printing/manufacturing settings
+- Modified/custom STL files
+- Ready-to-fly weight and battery configuration
+- Flight-test objectives and observations
+- Flight videos
+- ArduPilot BIN logs
+- Engineering analysis
+- Configuration changes
+- Known issues
+- Lessons learned and build-specific gotchas
+
+The intent is **reproducibility, configuration control, and traceability**.
+
+---
+
+# Flightory Stallion
+
+The Stallion family currently contains two separate physical aircraft projects:
+
+```text
+Stallion
+├── References
+├── V1
+│   └── Build 01
+└── V2
+    └── Build 01
+```
+
+## Stallion References
+
+Family-level documentation is maintained under:
+
+```text
+aircraft/flightory/stallion/references/
+```
+
+This area contains:
+
+- Official Flightory Stallion documentation
+- Official Stallion VTOL documentation
+- Matek F765-Wing references
+- Builder Notes — Lessons Learned & Gotchas
+
+Family-level references are intentionally separate from configuration records belonging to a specific physical aircraft.
+
+Where a lesson applies only to one version/build, it should be explicitly identified as such.
+
+---
+
+## Stallion VTOL V1 — Build 01
+
+V1 Build 01 is an existing aircraft undergoing VTOL flight development and testing.
+
+The V1 record includes aircraft configuration, ArduPilot information, flight testing, engineering analysis, media, and downloadable configuration artifacts.
+
+Detailed original manufacturing information was not captured during construction, so V1 Build 01 intentionally does **not** contain a 3D Printing & Manufacturing section.
+
+Current hover/test configuration documented by the project:
+
+- Ready-to-fly AUW: **2150 g**
+- Hover/test battery: **4S 4200 mAh LiPo**
+- Flight controller: **Matek F765-Wing**
+- Firmware: **ArduPlane 4.6.3**
+
+A separate 4S4P 14,000 mAh Li-ion battery is available as an endurance option but is not the current hover-test configuration.
+
+---
+
+## Stallion VTOL V2 — Build 01
+
+V2 Build 01 is the newer Stallion build and contains substantially more detailed manufacturing and construction records.
+
+Current implemented sections include:
+
+- **3D Printing & Manufacturing**
+- **Components**
+- **Assembly & Wiring**
+- **Downloads**
+- **Builder Notes / reference material**
+
+Additional sections will be populated as the build progresses.
+
+### 3D Printing & Manufacturing
+
+The detailed manufacturing report is located at:
+
+```text
+aircraft/flightory/stallion/v2/build-01/printing/
+```
+
+The report preserves part-level information such as:
+
+- Printer
+- Material
+- Slicer
+- Key slicer settings
 - Print time
-- Filament consumption
+- Filament usage
+- Part weight
+- Status
 - Reprints
-- Failed prints
-- Manufacturing notes
-- Slicer-specific requirements
-- Lessons learned
+- Build-specific findings
+
+Current slicer baseline includes **OrcaSlicer v2.4.2**.
+
+### Key V2 Manufacturing Findings
+
+#### Thin-Wall Parts
+
+The following parts can be sliced successfully in OrcaSlicer and do not require Cura:
+
+- BOOM TAIL INSERT
+- BOOM FUS INSERT
+- BOOM FUS MOUNT
+
+Required configuration:
+
+- **Detect Thin Walls:** Enabled
+- **Wall Generator:** Arachne
+
+This supersedes the earlier interim finding that Cura was required for these parts.
+
+#### X-Y Hole Compensation
+
+For Stallion VTOL V2 Build 01, verify:
+
+```text
+X-Y Hole Compensation: 0.30 mm
+```
+
+This setting is part of the V2 Build 01 manufacturing baseline and should be checked when preparing applicable parts with holes or fitted hardware.
+
+### Modified V-Tail Parts
+
+Both VTail 1 components required modification during V2 Build 01 manufacturing:
+
+- **V TAIL 1 L (modified)**
+- **V TAIL 1 R (modified)**
+
+The exact modified STL files are preserved under:
+
+```text
+aircraft/flightory/stallion/v2/build-01/downloads/
+```
+
+The corresponding part names in the 3D Printing & Manufacturing report link directly to these files.
+
+The modified geometry is retained as a **build-specific configuration-controlled artifact** rather than replacing the original Flightory design reference.
 
 ### Components
 
-May include:
-
-- Motors
-- ESCs
-- Servos
-- Flight controller
-- GPS / compass
-- Telemetry
-- Video system
-- Receiver
-- Batteries
-- Propellers
-- Wiring
-- Connectors
-- Antennas
-- Other avionics and hardware
-
-### Assembly
-
-May include:
-
-- Airframe assembly
-- Adhesives
-- Fasteners
-- Wiring diagrams
-- Connector layouts
-- Component placement
-- Structural modifications
-- Custom parts
-- Repair and rework history
-
-### ArduPilot
-
-May include:
-
-- Firmware version
-- Flight-controller configuration
-- Parameter files
-- QuadPlane / VTOL setup
-- Flight modes
-- Servo mappings
-- Motor mappings
-- Failsafe configuration
-- Calibration
-- Baseline PARAM files
-- Configuration-change history
-
-### Flight Testing
-
-May include:
-
-- Ground-test records
-- Motor tests
-- Control-surface validation
-- Hover testing
-- QSTABILIZE testing
-- QLOITER testing
-- Forward-flight testing
-- Transition testing
-- Flight-test objectives
-- Results
-- Observations
-- Pass / Review / Fail disposition
-
-### Engineering Analysis
-
-May include:
-
-- ArduPilot BIN logs
-- Flight-log analysis
-- Controller tuning
-- Yaw analysis
-- EKF analysis
-- Magnetic-interference analysis
-- Parameter comparisons
-- Configuration-change reports
-- Flight comparisons
-- Engineering assessment reports
-
-### Media
-
-Images and diagrams may be stored directly in the repository.
-
-Video is generally hosted externally, such as on YouTube, and embedded or linked from the appropriate build or flight-test page.
-
-A typical media structure may be:
+V2 Build 01 component documentation is maintained under:
 
 ```text
-media/
-├── printing/
-├── assembly/
-├── electronics/
-├── ground-testing/
-└── flight-testing/
+aircraft/flightory/stallion/v2/build-01/components/
 ```
+
+Current recorded hardware includes:
+
+- **Torsion Springs — 4.5 mm, 120 Degree**
+
+Component entries may include manufacturer documentation or product/source references where appropriate.
+
+### Assembly & Wiring
+
+V2 Build 01 assembly notes are maintained under:
+
+```text
+aircraft/flightory/stallion/v2/build-01/assembly-wiring/
+```
+
+A current build-specific wiring procedure is the V-tail servo extension:
+
+- Cut the V-tail servo leads immediately behind the factory connector pins.
+- Extend each lead by **400 mm** using matching servo wire.
+- Maintain signal, positive-power, and ground conductor order/polarity.
+- Insulate and strain-relieve the splices.
+- Route the extended wiring through the carbon-fiber structure to the flight controller.
+
+The 400 mm extension provides sufficient routing length without placing the servo wiring under unnecessary tension.
 
 ### Downloads
 
-May include:
+V2 Build 01 downloadable artifacts are stored under:
 
-- PARAM files
-- Manufacturing reports
+```text
+aircraft/flightory/stallion/v2/build-01/downloads/
+```
+
+This area may contain:
+
+- Modified/custom STL files
+- PARAM/configuration files
 - Engineering reports
-- Configuration baselines
-- Wiring diagrams
-- Reference documents
-- Other project resources
+- Other build-specific downloadable artifacts
+
+Downloads should remain associated with the physical build to which they apply.
 
 ---
 
-## Current Manufacturing Documentation
+# Configuration Control Philosophy
 
-The active Stallion VTOL V2 Build 01 project includes a detailed 3D-printing manufacturing report with:
+Documentation should describe the aircraft **as it actually existed**, not simply the intended design.
 
-- Part-by-part production data
-- Material consumption
-- Print times
-- Component weights
-- Printer assignments
-- Slicer configuration
-- Reprint history
-- Thin-wall settings
-- Manufacturing findings
+When hardware, firmware, wiring, parameters, battery configuration, manufacturing geometry, or other significant items change, the engineering record should be updated accordingly.
 
-The current primary slicer baseline is:
+Build-specific changes should not silently overwrite manufacturer references or records from another aircraft version.
 
-- **OrcaSlicer v2.4.2**
-- **Detect Thin Walls:** Enabled where required
-- **Wall Generator:** Arachne for validated thin-wall components
+Examples:
 
-Primary materials currently documented include:
-
-- Polymaker PolyLite LW-PLA
-- Overture PETG
-- Generic transparent PLA
+- A modified V2 STL belongs to the V2 Build 01 record.
+- A V1 PARAM file belongs to V1 Build 01.
+- A family-level Flightory manual belongs in Stallion References.
+- A test-flight BIN should remain associated with the aircraft configuration that produced it.
 
 ---
 
-## Media Strategy
+# PARAM and Flight-Test Records
 
-### Images
+Meaningful ArduPilot configuration milestones should be preserved as named PARAM snapshots.
 
-Build photos, diagrams, wiring references, component-placement photos, damage documentation, and other still images can be stored directly in the GitHub repository.
+Examples include:
 
-### Video
+- Initial configuration
+- Motor/servo verification
+- First hover
+- Roll/pitch tuning
+- Yaw tuning
+- First stable hover
+- QLOITER preparation
+- First successful QLOITER
+- Pre-transition configuration
+- Post-transition tuning
 
-Flight-test and testing video should generally be hosted on a video platform such as YouTube and embedded into the corresponding build or flight-test page.
+Meaningful flight tests should preserve the corresponding BIN log whenever possible.
 
-This avoids adding large video files to Git history while still keeping the video associated with the aircraft's engineering record.
+BIN logs support quantitative evaluation of:
+
+- PID tracking
+- EKF behavior
+- Yaw performance
+- Motor saturation
+- Magnetic interference
+- RC input
+- GPS behavior
+- Battery behavior
+- Flight-mode changes
+- System messages
+
+Video documents what the aircraft appeared to do; telemetry and BIN data help establish why it did it.
 
 ---
 
-## Project Goals
+# Website
 
-The purpose of this repository is to maintain a reproducible engineering record rather than only a photo-based build log.
+The repository is published as a static GitHub Pages project site.
 
-The documentation should preserve:
+Design goals include:
+
+- Dark engineering-oriented theme
+- Responsive layout
+- Card-based navigation
+- Clickable breadcrumb navigation
+- Relative internal links wherever practical
+- No server-side dependencies
+- No unnecessary web frameworks
+
+The repository remains a GitHub Pages **project site**:
+
+```text
+https://teamcorc.github.io/RC-Aircraft-Builds/
+```
+
+The repository should remain:
+
+```text
+teamcorc/RC-Aircraft-Builds
+```
+
+It should **not** be renamed to `teamcorc.github.io`.
+
+---
+
+# Documentation Standards
+
+When adding or updating project records:
+
+1. Preserve existing working content unless it is intentionally being revised.
+2. Do not invent configuration, wiring, hardware, or test details.
+3. Prefer official manufacturer documentation where available.
+4. Keep different aircraft versions and physical builds isolated.
+5. Preserve exact filenames for configuration-controlled artifacts.
+6. Use relative internal links where practical.
+7. Record actual test configuration, including AUW and battery when relevant.
+8. Preserve meaningful PARAM and BIN records.
+9. Treat modified files as build-specific artifacts unless their applicability has been independently established more broadly.
+10. Add lessons learned and gotchas as they are discovered.
+
+---
+
+## Project Goal
+
+The long-term goal of **RC Aircraft Builds** is to create a durable engineering archive that allows a future reader—or the builder months or years later—to determine:
 
 - What was built
-- How it was built
 - Which hardware was installed
-- Which firmware and parameters were used
-- What changed between tests
-- What failed
+- How it was configured
+- How it was manufactured
+- What was changed
+- What was tested
 - What worked
-- Why a change was made
-- How the aircraft performed afterward
+- What did not work
+- Why later decisions were made
 
-The goal is to make each aircraft easier to maintain, reproduce, troubleshoot, compare, and improve over time.
-
----
-
-## Project Status
-
-**Active and evolving**
-
-Aircraft, documentation, configuration, and test results in this repository may change as builds progress.
-
----
-
-## Disclaimer
-
-These projects involve experimental RC aircraft and, in some cases, VTOL / autonomous-flight systems.
-
-The information in this repository documents specific aircraft builds and test configurations. Anyone applying information from these projects to another aircraft is responsible for independently verifying the safety, suitability, legality, mechanical integrity, electrical configuration, software configuration, and operating procedures of their own aircraft.
+That record is intended to remain useful long after an individual build or flight-test session is complete.
