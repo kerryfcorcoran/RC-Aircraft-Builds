@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Flightory Aircraft</title><style>
+<title>Stallion VTOL V2 Build 01 — Assembly &amp; Wiring</title><style>
 :root{--bg:#08101c;--panel:#111a2b;--panel2:#18233a;--text:#edf4ff;--muted:#9fb1ca;--line:#2b3b5c;--accent:#66d7ff;--accent2:#85ffba;--warn:#ffd166}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#07101b,#0b1322 35%,#08101c);color:var(--text);line-height:1.5}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
@@ -24,18 +24,40 @@ h1{font-size:43px;margin:8px 0 10px}.muted{color:var(--muted)}
 .crumb .current{color:var(--text);font-weight:700}
 .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:36px}
 @media(max-width:700px){.grid{grid-template-columns:1fr}.nav{flex-direction:column}.wrap{padding:18px 12px 42px}h1{font-size:34px}}
-</style></head>
-<body>
-<div class="topbar"><div class="nav"><strong>RC AIRCRAFT BUILDS</strong><div class="links"><a href="../../">Site Home</a></div></div></div>
-<div class="wrap">
-<div class="crumb"><a href="../../">RC Aircraft Builds</a> → <span class="current">Flightory</span></div>
-<div class="hero"><h1>Flightory Aircraft</h1></div>
 
-<div class="grid">
-<a class="card linkcard" href="stallion/"><span class="badge active">ACTIVE</span><h2>Stallion</h2><p class="muted">VTOL fixed-wing aircraft family with V1 and V2 builds documented.</p><span class="btn">Open Stallion →</span></a>
-<a class="card linkcard" href="super-stingray-vtol/"><span class="badge active">ACTIVE</span><h2>Super Stingray VTOL</h2><p class="muted">Active Flightory VTOL aircraft project with V1 Build 01 manufacturing and documentation underway.</p><span class="btn">Open Project →</span></a>
-<a class="card linkcard" href="talon-1400/"><span class="badge planned">PLANNED</span><h2>Talon 1400</h2><p class="muted">Planned Flightory aircraft project.</p><span class="btn">Open Project →</span></a>
-<a class="card linkcard" href="stork/"><span class="badge planned">PLANNED</span><h2>Stork</h2><p class="muted">Planned Flightory aircraft project.</p><span class="btn">Open Project →</span></a>
+.stallion-hero-image{
+  width:100%;
+  height:clamp(220px,34vw,430px);
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  border-radius:16px;
+  border:1px solid var(--line);
+  margin-top:18px;
+  box-shadow:0 12px 35px rgba(0,0,0,.28);
+}
+.stallion-image-credit{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+  text-align:right;
+}
+
+</style></head>
+<body><div class="wrap">
+<div class="crumb"><a href="../../../../../../">RC Aircraft Builds</a> → <a href="../../../../">Flightory</a> → <a href="../../../">Stallion</a> → <a href="../../">V2</a> → <a href="../">Build 01</a> → <span class="current">Assembly &amp; Wiring</span></div>
+<div class="hero"><span class="badge active">V2 BUILD 01</span><h1>Assembly &amp; Wiring</h1><p class="muted">Assembly and wiring notes specific to Stallion VTOL V2 Build 01.</p></div>
+<div class="card">
+<h2>V-Tail Servo Wire Extension</h2>
+<p>Extend each <strong>V-tail servo lead by 400 mm</strong>.</p>
+<ol>
+<li>Cut the factory servo lead immediately behind the factory connector pins.</li>
+<li>Splice in <strong>400 mm</strong> of matching servo wire.</li>
+<li>Maintain the original signal, positive-power, and ground conductor order/polarity through the extension.</li>
+<li>Insulate and strain-relieve the splices.</li>
+<li>Route the extended leads through the carbon-fiber structure and onward to the flight controller.</li>
+</ol>
+<p class="muted"><strong>Purpose:</strong> The additional 400 mm provides sufficient lead length to route the V-tail servos through the carbon-fiber structure and reach the flight controller without placing the wiring under tension.</p>
 </div>
-<div class="footer">RC Aircraft Builds · Engineering Documentation</div>
+<div class="footer">RC Aircraft Builds · Flightory Stallion VTOL V2 Build 01</div>
 </div></body></html>

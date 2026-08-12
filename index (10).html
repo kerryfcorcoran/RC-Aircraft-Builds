@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Flightory Aircraft</title><style>
+<title>Stallion V2</title><style>
 :root{--bg:#08101c;--panel:#111a2b;--panel2:#18233a;--text:#edf4ff;--muted:#9fb1ca;--line:#2b3b5c;--accent:#66d7ff;--accent2:#85ffba;--warn:#ffd166}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#07101b,#0b1322 35%,#08101c);color:var(--text);line-height:1.5}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
@@ -24,18 +24,37 @@ h1{font-size:43px;margin:8px 0 10px}.muted{color:var(--muted)}
 .crumb .current{color:var(--text);font-weight:700}
 .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:36px}
 @media(max-width:700px){.grid{grid-template-columns:1fr}.nav{flex-direction:column}.wrap{padding:18px 12px 42px}h1{font-size:34px}}
+
+.stallion-hero-image{
+  width:100%;
+  height:clamp(220px,34vw,430px);
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  border-radius:16px;
+  border:1px solid var(--line);
+  margin-top:18px;
+  box-shadow:0 12px 35px rgba(0,0,0,.28);
+}
+.stallion-image-credit{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+  text-align:right;
+}
+
 </style></head>
 <body>
-<div class="topbar"><div class="nav"><strong>RC AIRCRAFT BUILDS</strong><div class="links"><a href="../../">Site Home</a></div></div></div>
+<div class="topbar"><div class="nav"><strong>RC AIRCRAFT BUILDS</strong><div class="links"><a href="../../../../">Site Home</a></div></div></div>
 <div class="wrap">
-<div class="crumb"><a href="../../">RC Aircraft Builds</a> → <span class="current">Flightory</span></div>
-<div class="hero"><h1>Flightory Aircraft</h1></div>
+<div class="crumb"><a href="../../../../">RC Aircraft Builds</a> → <a href="../../">Flightory</a> → <a href="../">Stallion</a> → <span class="current">V2</span></div>
+<div class="hero"><h1>Stallion VTOL V2</h1>
+<img class="stallion-hero-image" src="../assets/stallion-vtol.jpg" alt="Flightory Stallion VTOL aircraft">
+<div class="stallion-image-credit">Image: Flightory</div>
+</div>
 
 <div class="grid">
-<a class="card linkcard" href="stallion/"><span class="badge active">ACTIVE</span><h2>Stallion</h2><p class="muted">VTOL fixed-wing aircraft family with V1 and V2 builds documented.</p><span class="btn">Open Stallion →</span></a>
-<a class="card linkcard" href="super-stingray-vtol/"><span class="badge active">ACTIVE</span><h2>Super Stingray VTOL</h2><p class="muted">Active Flightory VTOL aircraft project with V1 Build 01 manufacturing and documentation underway.</p><span class="btn">Open Project →</span></a>
-<a class="card linkcard" href="talon-1400/"><span class="badge planned">PLANNED</span><h2>Talon 1400</h2><p class="muted">Planned Flightory aircraft project.</p><span class="btn">Open Project →</span></a>
-<a class="card linkcard" href="stork/"><span class="badge planned">PLANNED</span><h2>Stork</h2><p class="muted">Planned Flightory aircraft project.</p><span class="btn">Open Project →</span></a>
+<a class="card linkcard" href="build-01/"><span class="badge active">ACTIVE BUILD</span><h2>Build 01</h2><p class="muted">Current Stallion VTOL V2 build, including the detailed 3D-printing manufacturing record.</p><span class="btn">Open Build 01 →</span></a>
 </div>
 <div class="footer">RC Aircraft Builds · Engineering Documentation</div>
 </div></body></html>

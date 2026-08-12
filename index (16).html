@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stallion V1 Build 01 — Hover Flight Tests</title><style>
+:root{--bg:#08101c;--panel:#111a2b;--panel2:#18233a;--text:#edf4ff;--muted:#9fb1ca;--line:#2b3b5c;--accent:#66d7ff;--accent2:#85ffba;--warn:#ffd166}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#07101b,#0b1322 35%,#08101c);color:var(--text);line-height:1.5}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(8,16,28,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1240px;margin:auto;padding:12px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+.wrap{max-width:1240px;margin:auto;padding:28px 22px 60px}
+.hero,.card{background:var(--panel);border:1px solid var(--line);border-radius:20px}
+.hero{padding:36px;background:linear-gradient(135deg,#13213a,#0e1728 55%,#15233d)}
+.kicker{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:43px;margin:8px 0 10px}h2{margin:0 0 8px}.muted{color:var(--muted)}
+.crumb{color:var(--muted);font-size:13px;margin-bottom:15px}.crumb a{color:var(--accent);font-weight:650}.crumb .current{color:var(--text);font-weight:700}
+.timeline{display:grid;gap:20px;margin-top:24px}
+.test-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.test-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center}
+.badge{display:inline-block;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:800;color:var(--accent2);border:1px solid rgba(133,255,186,.25);background:rgba(133,255,186,.1)}
+.test-body{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.8fr);gap:20px;padding:20px 22px}
+.video{position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#050a12}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.notes{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:14px;padding:16px}
+.notes h3{margin-top:0}
+.btn{display:inline-block;margin-top:10px;padding:9px 13px;border-radius:10px;background:var(--panel2);border:1px solid var(--line);color:var(--text);font-weight:750}
+.card{padding:22px;margin-top:24px}
+.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:36px}
+@media(max-width:800px){.test-body{grid-template-columns:1fr}.nav{flex-direction:column;align-items:flex-start}.wrap{padding:18px 12px 42px}h1{font-size:34px}}
+</style></head>
+<body>
+<div class="topbar"><div class="nav"><strong>RC AIRCRAFT BUILDS</strong><div class="links">
+<a href="../../../../../../">Site Home</a>
+<a href="../">Build 01</a>
+</div></div></div>
+<div class="wrap">
+<div class="crumb">
+<a href="../../../../../../">RC Aircraft Builds</a> →
+<a href="../../../../">Flightory</a> →
+<a href="../../../">Stallion</a> →
+<a href="../../">V1</a> →
+<a href="../">Build 01</a> →
+<span class="current">Flight Testing</span>
+</div>
+
+<div class="hero">
+<div class="kicker">Flight Test Record</div>
+<h1>Stallion VTOL V1 — Build 01 Hover Testing</h1>
+<p class="muted">Chronological hover-test video log documenting the progression from early PID and tilt-motor adjustments toward increasingly stable hover control.</p>
+</div>
+
+<div class="timeline">
+
+    <article class="test-card">
+      <div class="test-head">
+        <div>
+          <span class="badge">HOVER TEST</span>
+          <h2 style="margin-top:8px">Hover Test 01</h2>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/rgmPBkfiptA" title="Hover Test 01" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="notes">
+          <h3>Test Notes</h3>
+          <p>Adjusted Q_A_RAT_RLL and PIT PIDs to reduce oscillation.</p>
+          <p class="muted">Additional flight mode, PARAM baseline, BIN log, date, and engineering-analysis references can be added later.</p>
+          <a class="btn" href="https://youtu.be/rgmPBkfiptA" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
+    </article>
+    
+    <article class="test-card">
+      <div class="test-head">
+        <div>
+          <span class="badge">HOVER TEST</span>
+          <h2 style="margin-top:8px">Hover Test 02</h2>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/ww_7vsuBFvk" title="Hover Test 02" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="notes">
+          <h3>Test Notes</h3>
+          <p>Noted pitch was reversed.</p>
+          <p class="muted">Additional flight mode, PARAM baseline, BIN log, date, and engineering-analysis references can be added later.</p>
+          <a class="btn" href="https://youtu.be/ww_7vsuBFvk" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
+    </article>
+    
+    <article class="test-card">
+      <div class="test-head">
+        <div>
+          <span class="badge">HOVER TEST</span>
+          <h2 style="margin-top:8px">Hover Test 03</h2>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/sWydqfvXYKo" title="Hover Test 03" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="notes">
+          <h3>Test Notes</h3>
+          <p>Slowly getting more control.</p>
+          <p class="muted">Additional flight mode, PARAM baseline, BIN log, date, and engineering-analysis references can be added later.</p>
+          <a class="btn" href="https://youtu.be/sWydqfvXYKo" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
+    </article>
+    
+    <article class="test-card">
+      <div class="test-head">
+        <div>
+          <span class="badge">HOVER TEST</span>
+          <h2 style="margin-top:8px">Hover Test 04</h2>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/ht9xuWq9za0" title="Hover Test 04" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="notes">
+          <h3>Test Notes</h3>
+          <p>Tweaking tilt motor MIN/MAX values.</p>
+          <p class="muted">Additional flight mode, PARAM baseline, BIN log, date, and engineering-analysis references can be added later.</p>
+          <a class="btn" href="https://youtu.be/ht9xuWq9za0" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
+    </article>
+    
+    <article class="test-card">
+      <div class="test-head">
+        <div>
+          <span class="badge">HOVER TEST</span>
+          <h2 style="margin-top:8px">Hover Test 05</h2>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/de7yJayHl5Y" title="Hover Test 05" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="notes">
+          <h3>Test Notes</h3>
+          <p>Utilized another builder's PIDs as a baseline.</p>
+          <p class="muted">Additional flight mode, PARAM baseline, BIN log, date, and engineering-analysis references can be added later.</p>
+          <a class="btn" href="https://youtu.be/de7yJayHl5Y" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
+    </article>
+    
+    <article class="test-card">
+      <div class="test-head">
+        <div>
+          <span class="badge">HOVER TEST</span>
+          <h2 style="margin-top:8px">Hover Test 06</h2>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/dC6cnTib-Gs" title="Hover Test 06" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="notes">
+          <h3>Test Notes</h3>
+          <p>Finally achieved a decent hover.</p>
+          <p class="muted">Additional flight mode, PARAM baseline, BIN log, date, and engineering-analysis references can be added later.</p>
+          <a class="btn" href="https://youtu.be/dC6cnTib-Gs" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
+    </article>
+    
+    <article class="test-card">
+      <div class="test-head">
+        <div>
+          <span class="badge">HOVER TEST</span>
+          <h2 style="margin-top:8px">Hover Test 07</h2>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/AccpxWC2XgA" title="Hover Test 07" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="notes">
+          <h3>Test Notes</h3>
+          <p>Getting more stabilized.</p>
+          <p class="muted">Additional flight mode, PARAM baseline, BIN log, date, and engineering-analysis references can be added later.</p>
+          <a class="btn" href="https://youtu.be/AccpxWC2XgA" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
+    </article>
+    
+</div>
+
+<div class="card">
+<h2>Flight-Test Record Expansion</h2>
+<p class="muted">This page can later be expanded with dates, flight modes, ArduPilot firmware, PARAM baselines, BIN logs, engineering reports, pass/review disposition, and parameter changes for each individual test.</p>
+</div>
+
+<div class="footer">RC Aircraft Builds · Flightory · Stallion VTOL V1 · Build 01 · Flight Testing</div>
+</div></body></html>

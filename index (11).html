@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stallion References — RC Aircraft Builds</title>
+<style>
+:root{--bg:#08101c;--panel:#111a2b;--panel2:#18233a;--text:#edf4ff;--muted:#9fb1ca;--line:#2b3b5c;--accent:#66d7ff;--accent2:#85ffba;--warn:#ffd166}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#07101b,#0b1322 35%,#08101c);color:var(--text);line-height:1.55}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(8,16,28,.95);border-bottom:1px solid var(--line)}
+.nav{max-width:1200px;margin:auto;padding:12px 22px;display:flex;justify-content:space-between;gap:16px}
+.wrap{max-width:1200px;margin:auto;padding:28px 22px 60px}
+.hero,.card,.note{background:var(--panel);border:1px solid var(--line);border-radius:20px}
+.hero{padding:36px;background:linear-gradient(135deg,#13213a,#0e1728 55%,#15233d)}
+h1{font-size:43px;margin:8px 0 10px}h2{margin-top:34px}h3{margin:0 0 8px}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px}
+.card{padding:22px}
+.linkcard{display:block;transition:.15s transform,.15s border-color}
+.linkcard:hover{transform:translateY(-2px);border-color:var(--accent);text-decoration:none}
+.badge{display:inline-block;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:800}
+.reference{color:var(--accent);border:1px solid rgba(102,215,255,.25);background:rgba(102,215,255,.1)}
+.warning{color:var(--warn);border:1px solid rgba(255,209,102,.25);background:rgba(255,209,102,.1)}
+.btn{display:inline-block;margin-top:8px;padding:10px 14px;border-radius:11px;background:var(--panel2);border:1px solid var(--line);color:var(--text);font-weight:750}
+.crumb{color:var(--muted);font-size:13px;margin-bottom:15px}.crumb a{color:var(--accent);font-weight:650}.crumb .current{color:var(--text);font-weight:700}
+.notes{display:grid;gap:14px;margin-top:18px}
+.note{padding:20px;border-left:4px solid var(--accent)}
+.note.gotcha{border-left-color:var(--warn)}
+.lesson{margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#0c1626;color:#cfdbeb}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+th{background:var(--panel2)}
+code{background:#0a1422;border:1px solid var(--line);padding:1px 5px;border-radius:5px;color:#c9efff}
+.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:36px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.nav{flex-direction:column}.wrap{padding:18px 12px 42px}h1{font-size:34px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="nav"><strong>RC AIRCRAFT BUILDS</strong><a href="../../../../">Site Home</a></div></div>
+<div class="wrap">
+
+<div class="crumb">
+<a href="../../../../">RC Aircraft Builds</a> →
+<a href="../../">Flightory</a> →
+<a href="../">Stallion</a> →
+<span class="current">References</span>
+</div>
+
+<div class="hero">
+<span class="badge reference">REFERENCE</span>
+<h1>Stallion — Reference Documentation</h1>
+<p class="muted">Practical builder notes, lessons learned, and engineering gotchas for the Flightory Stallion platform. Build-specific manuals and product documentation are maintained under the applicable Build Media section.</p>
+</div>
+
+<h2>⚠ Builder Notes — Lessons Learned &amp; Gotchas</h2>
+<p class="muted">These observations were identified during construction, configuration, ground testing, and hover testing of <strong>Stallion VTOL V1 Build 01</strong>. They do not replace Flightory, Matek, or ArduPilot documentation; they record practical issues encountered on the actual aircraft.</p>
+
+<div class="notes">
+<div class="note gotcha" id="v2-vtail-1-modification">
+<h3>V2 Build 01 — VTail 1 Parts Required Modification</h3>
+<p><strong>Applies to Stallion VTOL V2 Build 01.</strong> During manufacturing, both <strong>VTail Left 1</strong> and <strong>VTail Right 1</strong> required modification before they could be used for this physical build.</p>
+<p>The modified left and right STL files are preserved in the V2 Build 01 <a href="../v2/build-01/downloads/">Downloads</a> section so the exact geometry used on this aircraft remains traceable.</p>
+<div class="lesson"><strong>Lesson:</strong> Dry-fit and validate the VTail 1 parts before final assembly. If modification is required, preserve the exact modified geometry with the build record rather than overwriting or losing the original design reference.</div>
+</div>
+
+
+<div class="note gotcha">
+<h3>Flight Controller Orientation</h3>
+<p>Verify the physical orientation of the <strong>Matek F765-Wing</strong> and the corresponding ArduPilot board-orientation configuration. Do not assume the installed direction matches ArduPilot defaults. Confirm the artificial horizon and reported attitude respond correctly when the aircraft is manually rolled, pitched, and yawed.</p>
+<div class="lesson"><strong>Lesson:</strong> A mechanically correct FC installation can still result in incorrect stabilization when board orientation is configured incorrectly.</div>
+</div>
+
+<div class="note gotcha">
+<h3>Control Surface Direction — Two Separate Checks</h3>
+<p>Before flight, verify every aerodynamic control surface using both <strong>pilot stick commands</strong> and <strong>ArduPilot stabilization corrections</strong>. These are separate checks. A surface can respond correctly to the transmitter yet still move incorrectly when the autopilot attempts to stabilize the aircraft.</p>
+<div class="lesson"><strong>Lesson:</strong> Correct transmitter response alone does not establish correct stabilized-flight behavior.</div>
+</div>
+
+<div class="note gotcha">
+<h3>VTOL Pitch Direction</h3>
+<p>During early hover testing, <strong>VTOL pitch response was discovered to be reversed</strong>. Explicitly verify that VTOL pitch correction opposes aircraft movement before sustained hover testing.</p>
+<div class="lesson"><strong>Lesson:</strong> Verify VTOL stabilization direction independently from transmitter-response testing.</div>
+</div>
+
+<div class="note">
+<h3>Motor Assignment</h3>
+<p>Positively identify each VTOL motor and verify that the corresponding ArduPilot output operates the intended physical motor.</p>
+<table>
+<tr><th>Servo Output</th><th>ArduPilot Function</th><th>Physical Motor</th></tr>
+<tr><td>S7</td><td>Motor1</td><td>Front Right Tilt Motor</td></tr>
+<tr><td>S8</td><td>Motor2</td><td>Front Left Tilt Motor</td></tr>
+<tr><td>S9</td><td>Motor4</td><td>Rear Fixed Lift Motor</td></tr>
+</table>
+<div class="lesson"><strong>Lesson:</strong> Never determine motor identity from wiring position or assumption. Test outputs individually.</div>
+</div>
+
+<div class="note">
+<h3>Motor Rotation, Propeller Orientation &amp; Thrust Direction</h3>
+<p>Correct output mapping does not guarantee correct thrust. Individually verify motor rotation, propeller type/orientation, installation direction, and actual thrust direction. Repeat these checks whenever a motor, ESC, propeller, or motor connection is changed.</p>
+</div>
+
+<div class="note">
+<h3>Tilt Servo Direction &amp; Synchronization</h3>
+<p>Both front tilt mechanisms must move in the correct direction, remain synchronized, reach the intended VTOL/forward-flight positions, and operate without mechanical binding.</p>
+<table>
+<tr><th>Output</th><th>Function</th><th>Reversed</th><th>MIN</th><th>TRIM</th><th>MAX</th></tr>
+<tr><td>S11</td><td>TiltMotorFrontLeft</td><td>No</td><td>850</td><td>1500</td><td>2025</td></tr>
+<tr><td>S12</td><td>TiltMotorFrontRight</td><td>Yes</td><td>1100</td><td>1500</td><td>2225</td></tr>
+</table>
+<div class="lesson"><strong>Lesson:</strong> Do not assume both tilt mechanisms require identical numerical endpoints.</div>
+</div>
+
+<div class="note gotcha">
+<h3>Tilt Endpoints</h3>
+<p>Tilt-servo MIN/MAX values required adjustment during development. Set endpoints according to the actual mechanical installation and check both extremes for binding, servo buzzing/load, linkage interference, unequal motor position, and excessive travel.</p>
+<div class="lesson"><strong>Lesson:</strong> Endpoint configuration is both a flight-control setting and a mechanical-protection setting.</div>
+</div>
+
+<div class="note">
+<h3>ESC Signal Wiring</h3>
+<p>Each Holybro Tekko32 F4 45A ESC uses <strong>Signal + Ground only</strong> at the FC control connection. ESC red/BEC wires are <strong>not connected</strong>.</p>
+<p>There is <strong>no separate PDB</strong>. The 4S flight battery connects to the Matek F765-Wing battery input. The three ESC power leads are supplied from the split high-current power lead associated with the flight-controller power connection.</p>
+<ul>
+<li>S7 → Motor1 → Front Right</li>
+<li>S8 → Motor2 → Front Left</li>
+<li>S9 → Motor4 → Rear Lift</li>
+</ul>
+<div class="lesson"><strong>Lesson:</strong> Document high-current power wiring separately from ESC signal/ground wiring.</div>
+</div>
+
+<div class="note">
+<h3>FPV Power &amp; Installed Equipment</h3>
+<p>The current V1 analog FPV installation uses the <strong>Caddx Turtle V2</strong> camera and <strong>ImmersionRC 2.4 GHz VTX</strong>. Both receive power from the Matek F765-Wing. <strong>No buzzer is installed.</strong></p>
+<div class="lesson"><strong>Lesson:</strong> Document the aircraft as actually installed, not equipment previously tested or considered.</div>
+</div>
+
+<div class="note">
+<h3>ArduPilot SERIAL Numbers vs Physical UARTs</h3>
+<p>ArduPilot <code>SERIALx</code> logical numbering does not numerically correspond to the STM32 physical UART/USART number on the Matek F765-Wing. When troubleshooting a peripheral, record all three layers:</p>
+<p><strong>ArduPilot SERIAL port → Physical UART/USART → Matek board pads</strong></p>
+<div class="lesson"><strong>Lesson:</strong> Do not assume, for example, that SERIAL1 means physical UART1.</div>
+</div>
+
+<div class="note gotcha">
+<h3>Roll &amp; Pitch PID Oscillation</h3>
+<p>Early hover testing exhibited oscillation. <code>Q_A_RAT_RLL</code> and <code>Q_A_RAT_PIT</code> tuning was required before the aircraft produced an acceptable hover.</p>
+<div class="lesson"><strong>Lesson:</strong> Successfully leaving the ground does not establish that the controller is adequately tuned.</div>
+</div>
+
+<div class="note">
+<h3>Known-Good PID Values Are Starting Points</h3>
+<p>Another Stallion builder's PID configuration was useful as an initial baseline, but still required validation and tuning on this aircraft. AUW, CG, motors, propellers, servos, linkages, battery, structural stiffness, and component placement can change the required tuning.</p>
+<div class="lesson"><strong>Lesson:</strong> Another aircraft's successful settings are an engineering reference, not a substitute for validation.</div>
+</div>
+
+<div class="note">
+<h3>Yaw Authority</h3>
+<p>Yaw authority required progressive tuning. <code>Q_A_RAT_YAW_P</code> was increased incrementally while flight behavior and BIN data were evaluated, with approximately <strong>0.22</strong> becoming the current V1 baseline during this phase of development.</p>
+<div class="lesson"><strong>Lesson:</strong> Make tuning changes incrementally and retain previous known-good configurations.</div>
+</div>
+
+<div class="note gotcha">
+<h3>QSTABILIZE Does Not Establish QLOITER Readiness</h3>
+<p>A controllable QSTABILIZE hover does not automatically mean the aircraft is ready for QLOITER. Before progressing, confirm attitude control, yaw authority, GPS health, compass behavior, EKF health, position-estimate stability, motor saturation, vibration, and sensor behavior.</p>
+<div class="lesson"><strong>Lesson:</strong> Treat QLOITER as the next validation stage, not simply another switch position.</div>
+</div>
+
+<div class="note gotcha">
+<h3>Magnetic Interference</h3>
+<p>Mission Planner has repeatedly reported <strong>“Magnetic field varies with throttle.”</strong> Do not treat this only as a binary warning. Engineering analysis should consider magnetic-field range, throttle correlation, yaw innovation, yaw/throttle correlation, EKF behavior, current, and throttle.</p>
+<p>The #teamcorc Engineering Toolkit is being enhanced to consolidate these measurements into a <strong>Magnetic Interference Index / Compass Health score</strong>.</p>
+<div class="lesson"><strong>Lesson:</strong> Determine operational significance from quantitative flight data rather than warning text alone.</div>
+</div>
+
+<div class="note">
+<h3>Center of Gravity &amp; Ready-to-Fly Configuration</h3>
+<p>Verify CG in the aircraft's <strong>actual ready-to-fly configuration</strong>.</p>
+<table>
+<tr><th>Current V1 Hover AUW</th><td>2150 g</td></tr>
+<tr><th>Current Hover/Test Battery</th><td>4S 4200 mAh LiPo</td></tr>
+<tr><th>Available Endurance Battery</th><td>4S4P Li-ion, 14,000 mAh, 789 g — not the current hover-test battery</td></tr>
+</table>
+<div class="lesson"><strong>Lesson:</strong> Aircraft weight and CG are meaningful only when tied to a defined configuration.</div>
+</div>
+
+<div class="note">
+<h3>Record the Configuration for Every Flight Test</h3>
+<p>Each flight record should identify the actual test configuration, including AUW, battery, firmware, PARAM/configuration baseline, changes since the previous flight, flight modes, test objective, observations, BIN log, and video when available.</p>
+</div>
+
+<div class="note">
+<h3>Change One Thing at a Time</h3>
+<p>Whenever practical, make one tuning or configuration change at a time and conduct a controlled test before proceeding.</p>
+<div class="lesson"><strong>Lesson:</strong> Controlled iteration preserves cause/effect traceability.</div>
+</div>
+
+<div class="note">
+<h3>Preserve PARAM Baselines</h3>
+<p>Save named PARAM snapshots after meaningful milestones such as initial configuration, motor/servo verification, first hover, roll/pitch changes, yaw changes, first stable hover, QLOITER preparation, first successful QLOITER, pre-transition configuration, and post-transition tuning.</p>
+</div>
+
+<div class="note">
+<h3>Preserve BIN Logs</h3>
+<p>Retain BIN logs for meaningful tests. They enable quantitative evaluation of PID tracking, EKF behavior, yaw performance, motor saturation, magnetic interference, RC input, GPS, battery behavior, mode changes, and system messages.</p>
+<div class="lesson"><strong>Lesson:</strong> Video shows what the aircraft appeared to do; the BIN log helps establish why it did it.</div>
+</div>
+
+<div class="note">
+<h3>Treat the Build Record as Configuration Control</h3>
+<p>The documentation should describe the aircraft as it actually existed for a particular test. Update the engineering record whenever hardware, firmware, wiring, parameters, battery configuration, or other significant items change.</p>
+<div class="lesson"><strong>Lesson:</strong> Accurate configuration control is essential when comparing later flights against earlier BIN logs, videos, and tuning results.</div>
+</div>
+
+</div>
+
+<div class="footer">RC Aircraft Builds · Flightory Stallion Engineering Documentation</div>
+</div>
+</body>
+</html>
