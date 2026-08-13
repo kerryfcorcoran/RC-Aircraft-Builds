@@ -157,10 +157,10 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
   <h1>Detailed 3D Printing Report</h1>
   <p class="muted">Production report with executive summary, material usage, section-by-section part details, printer assignments, slicer settings, individual weights, print times, filament consumption, and reprint/process history.</p>
   <div class="metrics">
-    <div class="metric"><div class="value">13</div><div class="label">Accepted printed components</div></div>
-    <div class="metric"><div class="value">218 g</div><div class="label">Known accepted printed-part mass</div></div>
-    <div class="metric"><div class="value">75.150 m</div><div class="label">Known filament consumed</div></div>
-    <div class="metric"><div class="value">7h 47m</div><div class="label">Known recorded print time</div></div>
+    <div class="metric"><div class="value">18</div><div class="label">Accepted printed components</div></div>
+    <div class="metric"><div class="value">284 g</div><div class="label">Known accepted printed-part mass</div></div>
+    <div class="metric"><div class="value">97.830 m</div><div class="label">Known filament consumed</div></div>
+    <div class="metric"><div class="value">12h 53m</div><div class="label">Known recorded print time</div></div>
   </div>
 </div>
 <p class="muted">Totals reflect accepted, recorded prints only.</p>
@@ -175,8 +175,9 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
 <h3>Material Summary</h3>
 <table>
 <tr><th>Material Group</th><th class="num">Weight</th><th class="num">Filament</th><th class="num">Time</th></tr>
-<tr><td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> — Red</td><td class="num">218 g</td><td class="num">75.150 m</td><td class="num">7h 47m</td></tr>
-<tr><th>Total</th><th class="num">218 g</th><th class="num">75.150 m</th><th class="num">7h 47m</th></tr>
+<tr><td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> — Red</td><td class="num">260 g</td><td class="num">89.240 m</td><td class="num">9h 45m</td></tr>
+<tr><td><a href="https://esun3dstore.com/products/epla-lw" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">eSun ePLA-LW ↗</a> — White</td><td class="num">24 g</td><td class="num">8.590 m</td><td class="num">3h 08m</td></tr>
+<tr><th>Total</th><th class="num">284 g</th><th class="num">97.830 m</th><th class="num">12h 53m</th></tr>
 </table>
 <p class="muted">Figures are printed-component mass only, not final empty weight or AUW.</p>
 </div>
@@ -186,6 +187,7 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
 <div class="timeline">
 <div class="event"><strong>Nozzle:</strong> <a href="https://store.creality.com/products/unicorn-quick-swap-nozzle-kit-for-k1c-ender-3-v3" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Creality Unicorn Hardened Steel Nozzle — 0.4 mm ↗</a>.</div>
 <div class="event"><strong>Structural PETG parts:</strong> 3 walls with 20% Cubic infill; tree supports where overhangs require them.</div>
+<div class="event"><strong>Lightweight wing parts (eLW-PLA):</strong> K1-Max White; 1 wall, 3% Gyroid infill, printed at 45° orientation.</div>
 </div>
 </div>
 </section>
@@ -300,7 +302,7 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
 <section class="collapsible-section">
   <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-wings">
     <span class="title">Wings</span>
-    <span class="summary">2 accepted line items · 94.0 g · 31.340 m · 2h 30m</span>
+    <span class="summary">3 accepted line items · 118.0 g · 39.930 m · 5h 38m</span>
     <span class="arrow">▼</span>
   </button>
   <div class="section-content" id="section-wings">
@@ -335,6 +337,87 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
           <td><span class="badge ok">Complete</span></td>
           <td></td>
         </tr>
+        <tr>
+          <td><strong>WING 2 L</strong></td>
+          <td>K1-Max White</td>
+          <td><a href="https://esun3dstore.com/products/epla-lw" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">eSun ePLA-LW ↗</a> White</td>
+          <td>OrcaSlicer v2.4.2</td>
+          <td>1 wall; 3% Gyroid; 45° orientation</td>
+          <td class="num">24 g</td>
+          <td class="num">3h 08m</td>
+          <td class="num">8.590 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+  </div>
+</section>
+
+
+<section class="collapsible-section">
+  <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-fuselage">
+    <span class="title">Fuselage</span>
+    <span class="summary">4 accepted line items · 42.0 g · 14.090 m · 1h 58m</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="section-content" id="section-fuselage">
+<div class="card table-wrap">
+      <table class="detail">
+        <thead><tr>
+          <th>Part</th><th>Printer</th><th>Material</th><th>Slicer</th><th>Key Settings</th>
+          <th class="num">Weight</th><th class="num">Time</th><th class="num">Filament</th><th>Status</th><th>Notes</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td><strong>FUS ROOT L</strong></td>
+          <td>K1-Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> Red</td>
+          <td>OrcaSlicer v2.4.2</td>
+          <td>3 walls; 20% Cubic</td>
+          <td class="num">9 g</td>
+          <td class="num">28 m</td>
+          <td class="num">2.870 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>FUS ROOT R</strong></td>
+          <td>K1-Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> Red</td>
+          <td>OrcaSlicer v2.4.2</td>
+          <td>3 walls; 20% Cubic</td>
+          <td class="num">8 g</td>
+          <td class="num">28 m</td>
+          <td class="num">2.880 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>BATTERY PAD</strong></td>
+          <td>K1-Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> Red</td>
+          <td>OrcaSlicer v2.4.2</td>
+          <td>2 walls; 20% Cubic</td>
+          <td class="num">20 g</td>
+          <td class="num">48 m</td>
+          <td class="num">6.640 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>FRONT REINFORCEMENT</strong></td>
+          <td>K1-Max Orange</td>
+          <td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> Red</td>
+          <td>OrcaSlicer v2.4.2</td>
+          <td>2 walls; 20% Cubic</td>
+          <td class="num">5 g</td>
+          <td class="num">14 m</td>
+          <td class="num">1.700 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
         </tbody>
       </table>
       </div>
@@ -351,8 +434,8 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
   <div class="section-content" id="section-baseline">
 <div class="card">
 <h2>Manufacturing Baseline</h2>
-<p style="font-size:20px"><strong>13 accepted components · 218 g known mass · 75.150 m known filament · 7h 47m known printing</strong></p>
-<p class="muted">Boom/tail hardware, wing roots, all eight VTOL motor-mount parts, and MOTOR MOUNT complete: BOOM MOUNT L/R, WING ROOT VTOL L/R, MOTOR MOUNT TOP VTOL ×4, MOTOR MOUNT BOTTOM VTOL ×4, and MOTOR MOUNT ×1. All recorded completed parts printed clean without supports except BOOM MOUNT L (tree supports).</p>
+<p style="font-size:20px"><strong>18 accepted components · 284 g known mass · 97.830 m known filament · 12h 53m known printing</strong></p>
+<p class="muted">Boom/tail hardware, powertrain motor mounts (MOTOR MOUNT TOP VTOL ×4, MOTOR MOUNT BOTTOM VTOL ×4, MOTOR MOUNT ×1), wing roots, WING 2 L, and fuselage hardware (FUS ROOT L/R, BATTERY PAD, FRONT REINFORCEMENT) all complete. All recorded completed parts printed clean without supports except BOOM MOUNT L (tree supports). WING 2 L is the first part on a second process: K1-Max White printing eSun ePLA-LW at 1 wall / 3% Gyroid / 45° orientation.</p>
 </div>
   </div>
 </section>
