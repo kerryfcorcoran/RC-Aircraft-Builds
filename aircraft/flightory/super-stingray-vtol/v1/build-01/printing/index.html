@@ -157,10 +157,10 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
   <h1>Detailed 3D Printing Report</h1>
   <p class="muted">Production report with executive summary, material usage, section-by-section part details, printer assignments, slicer settings, individual weights, print times, filament consumption, and reprint/process history.</p>
   <div class="metrics">
-    <div class="metric"><div class="value">18</div><div class="label">Accepted printed components</div></div>
-    <div class="metric"><div class="value">284 g</div><div class="label">Known accepted printed-part mass</div></div>
-    <div class="metric"><div class="value">97.830 m</div><div class="label">Known filament consumed</div></div>
-    <div class="metric"><div class="value">12h 53m</div><div class="label">Known recorded print time</div></div>
+    <div class="metric"><div class="value">19</div><div class="label">Accepted printed components</div></div>
+    <div class="metric"><div class="value">307 g</div><div class="label">Known accepted printed-part mass</div></div>
+    <div class="metric"><div class="value">106.210 m</div><div class="label">Known filament consumed</div></div>
+    <div class="metric"><div class="value">15h 39m</div><div class="label">Known recorded print time</div></div>
   </div>
 </div>
 <p class="muted">Totals reflect accepted, recorded prints only.</p>
@@ -176,8 +176,8 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
 <table>
 <tr><th>Material Group</th><th class="num">Weight</th><th class="num">Filament</th><th class="num">Time</th></tr>
 <tr><td><a href="https://overture3d.com/products/overture-petg" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Overture PETG ↗</a> — Red</td><td class="num">260 g</td><td class="num">89.240 m</td><td class="num">9h 45m</td></tr>
-<tr><td><a href="https://esun3dstore.com/products/epla-lw" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">eSun ePLA-LW ↗</a> — White</td><td class="num">24 g</td><td class="num">8.590 m</td><td class="num">3h 08m</td></tr>
-<tr><th>Total</th><th class="num">284 g</th><th class="num">97.830 m</th><th class="num">12h 53m</th></tr>
+<tr><td><a href="https://esun3dstore.com/products/epla-lw" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">eSun ePLA-LW ↗</a> — White</td><td class="num">47 g</td><td class="num">16.970 m</td><td class="num">5h 54m</td></tr>
+<tr><th>Total</th><th class="num">307 g</th><th class="num">106.210 m</th><th class="num">15h 39m</th></tr>
 </table>
 <p class="muted">Figures are printed-component mass only, not final empty weight or AUW.</p>
 </div>
@@ -186,8 +186,8 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
 <p><strong>Primary slicer:</strong> <a href="https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v2.4.2" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">OrcaSlicer v2.4.2 ↗</a></p>
 <div class="timeline">
 <div class="event"><strong>Nozzle:</strong> <a href="https://store.creality.com/products/unicorn-quick-swap-nozzle-kit-for-k1c-ender-3-v3" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">Creality Unicorn Hardened Steel Nozzle — 0.4 mm ↗</a>.</div>
-<div class="event"><strong>Structural PETG parts:</strong> 3 walls with 20% Cubic infill; tree supports where overhangs require them.</div>
-<div class="event"><strong>Lightweight wing parts (eLW-PLA):</strong> K1-Max White; 1 wall, 3% Gyroid infill, printed at 45° orientation.</div>
+<div class="event"><strong>Structural PETG parts:</strong> 20% Cubic infill; generally 3 walls, with selected parts using 2 walls as recorded in the component tables. Tree supports used where required by geometry.</div>
+<div class="event"><strong>Lightweight wing parts (ePLA-LW):</strong> K1-Max White; 1 wall, 3% Gyroid infill, printed at 45° orientation.</div>
 </div>
 </div>
 </section>
@@ -302,7 +302,7 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
 <section class="collapsible-section">
   <button class="section-toggle" type="button" aria-expanded="true" aria-controls="section-wings">
     <span class="title">Wings</span>
-    <span class="summary">3 accepted line items · 118.0 g · 39.930 m · 5h 38m</span>
+    <span class="summary">4 accepted line items · 141.0 g · 48.310 m · 8h 24m</span>
     <span class="arrow">▼</span>
   </button>
   <div class="section-content" id="section-wings">
@@ -346,6 +346,18 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
           <td class="num">24 g</td>
           <td class="num">3h 08m</td>
           <td class="num">8.590 m</td>
+          <td><span class="badge ok">Complete</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>WING 2 R VTOL</strong></td>
+          <td>K1-Max White</td>
+          <td><a href="https://esun3dstore.com/products/epla-lw" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700">eSun ePLA-LW ↗</a> White</td>
+          <td>OrcaSlicer v2.4.2</td>
+          <td>1 wall; 3% Gyroid; 45° orientation</td>
+          <td class="num">23 g</td>
+          <td class="num">2h 46m</td>
+          <td class="num">8.380 m</td>
           <td><span class="badge ok">Complete</span></td>
           <td></td>
         </tr>
@@ -434,8 +446,8 @@ ul{padding-left:20px} .footer{text-align:center;color:var(--muted);font-size:12p
   <div class="section-content" id="section-baseline">
 <div class="card">
 <h2>Manufacturing Baseline</h2>
-<p style="font-size:20px"><strong>18 accepted components · 284 g known mass · 97.830 m known filament · 12h 53m known printing</strong></p>
-<p class="muted">Boom/tail hardware, powertrain motor mounts (MOTOR MOUNT TOP VTOL ×4, MOTOR MOUNT BOTTOM VTOL ×4, MOTOR MOUNT ×1), wing roots, WING 2 L, and fuselage hardware (FUS ROOT L/R, BATTERY PAD, FRONT REINFORCEMENT) all complete. All recorded completed parts printed clean without supports except BOOM MOUNT L (tree supports). WING 2 L is the first part on a second process: K1-Max White printing eSun ePLA-LW at 1 wall / 3% Gyroid / 45° orientation.</p>
+<p style="font-size:20px"><strong>19 accepted components · 307 g known mass · 106.210 m known filament · 15h 39m known printing</strong></p>
+<p class="muted">Boom/tail hardware, powertrain motor mounts (MOTOR MOUNT TOP VTOL ×4, MOTOR MOUNT BOTTOM VTOL ×4, MOTOR MOUNT ×1), wing roots, WING 2 L/R, and fuselage hardware (FUS ROOT L/R, BATTERY PAD, FRONT REINFORCEMENT) all complete. All recorded completed parts printed clean without supports except BOOM MOUNT L (tree supports). WING 2 L/R run the second process: K1-Max White printing eSun ePLA-LW at 1 wall / 3% Gyroid / 45° orientation.</p>
 </div>
   </div>
 </section>
